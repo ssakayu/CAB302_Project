@@ -1,0 +1,4 @@
+com\focusdesk\app\DbTest.class
+com\focusdesk\dao\DatabaseManager.class
+com\focusdesk\model\User.class
+com\focusdesk\dao\UserDAO.class
