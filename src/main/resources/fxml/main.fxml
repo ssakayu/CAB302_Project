@@ -1,3 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx" />
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.focusdesk.controller.MainController"
+      alignment="TOP_LEFT" spacing="10"
+      style="-fx-padding: 20;">
+    <Button fx:id="widgetToggleButton" text="Open Widget" onAction="#toggleWidget" />
+</VBox>

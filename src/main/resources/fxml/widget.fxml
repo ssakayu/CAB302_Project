@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx" />
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.focusdesk.controller.widget.WidgetController"
+            prefWidth="380" prefHeight="220">
+    <center>
+        <Label text="FocusDesk Widget" />
+    </center>
+</BorderPane>

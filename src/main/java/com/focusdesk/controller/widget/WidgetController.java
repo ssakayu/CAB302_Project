@@ -1,3 +1,11 @@
 package com.focusdesk.controller.widget;
 
-public class WidgetController {}
+import javafx.fxml.FXML;
+
+public class WidgetController {
+
+    @FXML
+    public void initialize() {
+        // Slide wiring goes here in later stories
+    }
+}
