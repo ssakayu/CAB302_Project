@@ -6,12 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         DatabaseManager.init();
 
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/login.fxml"));
