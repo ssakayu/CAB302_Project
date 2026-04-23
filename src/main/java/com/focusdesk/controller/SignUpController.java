@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class SignupController {
+public class SignUpController {
 
     @FXML private TextField usernameField;
     @FXML private TextField emailField;
