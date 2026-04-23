@@ -30,6 +30,7 @@ bin/
 
 ### Maven ###
 target/
+.tools/
 
 ### Runtime data ###
 *.db

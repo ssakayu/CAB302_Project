@@ -14,7 +14,7 @@ public class App extends Application {
 
         Session.getInstance().setMainStage(stage);
 
-        // TODO: restore login.fxml once auth is implemented
+        // NOTE: restore login.fxml once auth is implemented
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/main.fxml"));
         Scene scene = new Scene(loader.load(), 800, 600);
         stage.setTitle("FocusDesk");

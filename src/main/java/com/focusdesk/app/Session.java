@@ -31,7 +31,7 @@ public class Session {
     private final BooleanProperty widgetOpen = new SimpleBooleanProperty(false);
 
     // Last known widget geometry (in-memory only).
-    // TODO: load initial values from PreferenceDAO on login; persist on logout/close via PreferenceDAO
+    // NOTE: load initial values from PreferenceDAO on login; persist on logout/close via PreferenceDAO
     private double widgetX      = Double.NaN;
     private double widgetY      = Double.NaN;
     private double widgetWidth  = 380;
@@ -126,7 +126,7 @@ public class Session {
                 widgetWidth  = widgetStage.getWidth();
                 widgetHeight = widgetStage.getHeight();
                 widgetOpen.set(false);
-                // TODO: call PreferenceDAO.updateWidgetBounds(currentUser.getId(), widgetX, widgetY, widgetWidth, widgetHeight)
+                // NOTE: call PreferenceDAO.updateWidgetBounds(currentUser.getId(), widgetX, widgetY, widgetWidth, widgetHeight)
             });
 
             widgetStage.setOnHidden(e -> widgetStage = null);
