@@ -1,37 +1,52 @@
-package com.focusdesk.app;
+package com.focusdesk.dao;
 
-import com.focusdesk.dao.DatabaseManager;
+import com.focusdesk.model.PomodoroSession;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PomodoroDAO {
-    public static void main(String[] args) {
-        try {
-            DatabaseManager.init();
-            System.out.println("✅ Schema applied");
 
-            try (Connection conn = DatabaseManager.getConnection()) {
+    public PomodoroSession logSession(int userId, int focusMinutes) throws Exception {
+        String sql = "INSERT INTO pomodoro_sessions(user_id, focus_minutes) VALUES(?, ?)";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-                System.out.println("\n=== Tables ===");
-                try (var st = conn.createStatement();
-                     var rs = st.executeQuery("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;")) {
-                    while (rs.next()) System.out.println("- " + rs.getString(1));
+            ps.setInt(1, userId);
+            ps.setInt(2, focusMinutes);
+            ps.executeUpdate();
+
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return new PomodoroSession(rs.getInt(1), userId, focusMinutes);
                 }
-
-                System.out.println("\n=== Users ===");
-                try (var st = conn.createStatement();
-                     var rs = st.executeQuery("SELECT id, username, email, created_at FROM users ORDER BY id;")) {
-                    boolean any = false;
-                    while (rs.next()) {
-                        any = true;
-                        System.out.println(rs.getInt(1) + " | " + rs.getString(2) + " | " + rs.getString(3) + " | " + rs.getString(4));
-                    }
-                    if (!any) System.out.println("(no rows)");
-                }
-
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        throw new RuntimeException("Failed to log pomodoro session");
+    }
+
+    public List<PomodoroSession> listByUser(int userId) throws Exception {
+        String sql = "SELECT id, user_id, focus_minutes FROM pomodoro_sessions WHERE user_id = ? ORDER BY id DESC";
+        List<PomodoroSession> out = new ArrayList<>();
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, userId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    out.add(new PomodoroSession(
+                            rs.getInt("id"),
+                            rs.getInt("user_id"),
+                            rs.getInt("focus_minutes")
+                    ));
+                }
+            }
+        }
+        return out;
     }
 }
