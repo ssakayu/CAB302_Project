@@ -27,12 +27,12 @@
             <version>1.7.36</version>
         </dependency>
 
+        <!-- BCrypt -->
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
-
 
         <!-- JavaFX -->
         <dependency>

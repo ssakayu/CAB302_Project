@@ -49,6 +49,10 @@ public class Session {
     /** Convenience alias. */
     public static Session get() { return getInstance(); }
 
+    public static User getCurrentUser() { return get().currentUser; }
+    public static void setCurrentUser(User user) { get().login(user); }
+    public static void clear() { get().logout(); }
+
     // -------------------------------------------------------------------------
     // Auth
     // -------------------------------------------------------------------------
@@ -160,7 +164,6 @@ public class Session {
     // Getters
     // -------------------------------------------------------------------------
 
-    public User getCurrentUser()            { return currentUser; }
     public ObservableList<Task> getTasks()  { return tasks; }
     public ObservableList<Note> getNotes()  { return notes; }
 }

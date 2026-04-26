@@ -1,20 +1,29 @@
 package com.focusdesk.controller;
 
+import com.focusdesk.app.App;
 import com.focusdesk.app.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class MainController {
 
+    @FXML private Label welcomeLabel;
     @FXML private Button widgetToggleButton;
 
     @FXML
     private void initialize() {
-        // Keep button label in sync with actual widget state,
-        // including when the user closes the widget via its own close button
-        Session.get().widgetOpenProperty().addListener((obs, wasOpen, isOpen) ->
-                widgetToggleButton.setText(isOpen ? "Close Widget" : "Open Widget")
-        );
+        var u = Session.getCurrentUser();
+        if (welcomeLabel != null) {
+            welcomeLabel.setText(u == null ? "Welcome" : "Welcome, " + u.getUsername());
+        }
+
+        if (widgetToggleButton != null) {
+            widgetToggleButton.setText(Session.get().isWidgetOpen() ? "Close Widget" : "Open Widget");
+            Session.get().widgetOpenProperty().addListener((obs, wasOpen, isOpen) ->
+                    widgetToggleButton.setText(isOpen ? "Close Widget" : "Open Widget")
+            );
+        }
     }
 
     @FXML
@@ -25,5 +34,13 @@ public class MainController {
         } else {
             session.openWidget();
         }
+    }
+
+    @FXML
+    private void onLogout() {
+        Session.clear();
+        try {
+            App.setRoot("login");
+        } catch (Exception ignored) {}
     }
 }

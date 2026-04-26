@@ -1,0 +1,3 @@
+com\focusdesk\dao\UserDAO.class
+com\focusdesk\dao\DatabaseManager.class
+com\focusdesk\model\User.class
