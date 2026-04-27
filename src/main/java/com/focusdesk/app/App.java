@@ -16,7 +16,7 @@ public class App extends Application {
         DatabaseManager.init();
         Session.getInstance().setMainStage(stage);
 
-        scene = new Scene(loadFXML("login"), 420, 520);
+        scene = new Scene(loadFXML("login"), 820, 700);
         stage.setTitle("FocusDesk - Auth");
         stage.setScene(scene);
         stage.show();

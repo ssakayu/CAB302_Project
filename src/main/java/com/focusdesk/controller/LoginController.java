@@ -32,7 +32,8 @@ public class LoginController {
                     try {
                         App.setRoot("main");
                     } catch (Exception e) {
-                        messageLabel.setText("Failed to open main screen");
+                        e.printStackTrace();
+                        messageLabel.setText("Failed to open main screen: " + e.getClass().getSimpleName() + " - " + e.getMessage());
                     }
                 },
                 err -> messageLabel.setText(err.getMessage())
@@ -44,7 +45,8 @@ public class LoginController {
         try {
             App.setRoot("signup");
         } catch (Exception e) {
-            messageLabel.setText("Failed to open signup");
+            e.printStackTrace();
+            messageLabel.setText("Failed to open signup: " + e.getClass().getSimpleName() + " - " + e.getMessage());
         }
     }
 }

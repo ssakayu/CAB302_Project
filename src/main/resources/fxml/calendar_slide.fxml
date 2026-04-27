@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx" />
+
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           style="-fx-background-color: #262c36; -fx-background-radius: 10; -fx-padding: 14;"/>
