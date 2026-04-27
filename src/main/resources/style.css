@@ -1,0 +1,341 @@
+.app-root {
+    -fx-background-color: #333333;
+    -fx-font-family: "Arial";
+}
+
+/* TOP BAR */
+
+.top-bar {
+    -fx-background-color: #7a7a7a;
+    -fx-border-color: #2997ff;
+    -fx-border-width: 2.2;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.dot {
+    -fx-min-width: 18;
+    -fx-min-height: 18;
+    -fx-max-width: 18;
+    -fx-max-height: 18;
+    -fx-background-radius: 100;
+}
+
+.dot-red {
+    -fx-background-color: #ff3b30;
+}
+
+.dot-yellow {
+    -fx-background-color: #ffcc00;
+}
+
+.dot-green {
+    -fx-background-color: #18e84f;
+}
+
+.window-title {
+    -fx-text-fill: #f1f1f1;
+    -fx-font-size: 26px;
+}
+
+.widget-btn {
+    -fx-background-color: #e8e8e8;
+    -fx-text-fill: #5f8fd5;
+    -fx-font-size: 20px;
+    -fx-padding: 5 14;
+    -fx-background-radius: 6;
+}
+
+.menu-btn {
+    -fx-background-color: #e8e8e8;
+    -fx-text-fill: black;
+    -fx-font-size: 22px;
+    -fx-min-width: 58;
+    -fx-min-height: 44;
+    -fx-background-radius: 60;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    -fx-background-color: #7b7b7b;
+    -fx-border-color: #1d1d1d;
+    -fx-border-width: 0 1.2 0 0;
+}
+
+.sidebar-heading {
+    -fx-text-fill: #f1f1f1;
+    -fx-font-size: 22px;
+}
+
+.nav-row {
+    -fx-cursor: hand;
+    -fx-padding: 2 0 2 0;
+}
+
+.nav-row:hover .nav-text {
+    -fx-text-fill: white;
+}
+
+.nav-square,
+.nav-square-active {
+    -fx-min-width: 24;
+    -fx-min-height: 24;
+    -fx-max-width: 24;
+    -fx-max-height: 24;
+    -fx-background-radius: 5;
+}
+
+.nav-square {
+    -fx-background-color: #d5d5d5;
+}
+
+.nav-square-active {
+    -fx-background-color: #00efa3;
+}
+
+.nav-text {
+    -fx-text-fill: #2a2a2a;
+    -fx-font-size: 23px;
+}
+
+.nav-text-active {
+    -fx-text-fill: white;
+}
+
+.launch-box {
+    -fx-border-color: #202020;
+    -fx-border-width: 1;
+    -fx-padding: 7 12;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.launch-btn {
+    -fx-background-color: #e7e7e7;
+    -fx-text-fill: #5f8fd5;
+    -fx-font-size: 18px;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12;
+}
+
+.helper-text {
+    -fx-text-fill: #2d2d2d;
+    -fx-font-size: 13px;
+}
+
+/* MAIN AREA */
+
+.main-area {
+    -fx-background-color: #3a3a3a;
+}
+
+.dashboard-title {
+    -fx-text-fill: #f6f6f6;
+    -fx-font-size: 38px;
+}
+
+.dashboard-subtitle {
+    -fx-text-fill: #b9b9b9;
+    -fx-font-size: 18px;
+}
+
+.stat-card {
+    -fx-background-color: #252525;
+    -fx-background-radius: 7;
+}
+
+.stat-heading {
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+}
+
+.stat-value {
+    -fx-text-fill: white;
+    -fx-font-size: 27px;
+}
+
+.content-card {
+    -fx-background-color: #252525;
+    -fx-background-radius: 7;
+}
+
+.content-title {
+    -fx-text-fill: white;
+    -fx-font-size: 23px;
+}
+
+.remaining-badge {
+    -fx-background-color: #ececec;
+    -fx-text-fill: #5d8fd7;
+    -fx-font-size: 19px;
+    -fx-padding: 5 16;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-color: #91dfff;
+    -fx-border-width: 1.8;
+}
+
+.green-badge {
+    -fx-background-color: #2d754f;
+    -fx-text-fill: #72f4a4;
+    -fx-font-size: 19px;
+    -fx-padding: 5 13;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-color: #6bf0a0;
+    -fx-border-width: 1.4;
+}
+
+/* TASKS */
+
+.task-row {
+    -fx-border-color: transparent transparent #b8b8b8 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 3 0 5 0;
+}
+
+.task-checkbox {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.task-label {
+    -fx-text-fill: white;
+    -fx-font-size: 19px;
+}
+
+.task-completed {
+    -fx-strikethrough: true;
+    -fx-opacity: 0.65;
+}
+
+.status-pill {
+    -fx-min-width: 48;
+    -fx-max-width: 48;
+    -fx-min-height: 18;
+    -fx-max-height: 18;
+    -fx-background-radius: 24;
+}
+
+.green-pill {
+    -fx-background-color: #00efa3;
+}
+
+.red-pill {
+    -fx-background-color: red;
+}
+
+.yellow-pill {
+    -fx-background-color: #f3ecad;
+}
+
+/* CALENDAR */
+
+.calendar-event {
+    -fx-border-color: transparent transparent #b8b8b8 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 1 0 6 0;
+}
+
+.event-title {
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+}
+
+.event-time {
+    -fx-text-fill: white;
+    -fx-font-size: 17px;
+}
+
+.event-dot {
+    -fx-text-fill: #00efa3;
+    -fx-font-size: 20px;
+}
+
+/* MUSIC */
+
+.music-player {
+    -fx-background-color: #e5e5e5;
+    -fx-background-radius: 22;
+    -fx-max-width: 300;
+}
+
+.music-small {
+    -fx-text-fill: black;
+    -fx-font-size: 9px;
+}
+
+.song-info {
+    -fx-text-fill: black;
+    -fx-font-size: 8px;
+}
+
+.time-text {
+    -fx-text-fill: black;
+    -fx-font-size: 8px;
+}
+
+.progress-line {
+    -fx-background-color: #555555;
+    -fx-pref-height: 1.2;
+    -fx-max-height: 1.2;
+    -fx-min-height: 1.2;
+}
+
+.music-controls {
+    -fx-text-fill: black;
+    -fx-font-size: 15px;
+}
+
+/* WIDGET SETTINGS */
+
+.enabled-slides-label {
+    -fx-text-fill: #b9b9b9;
+    -fx-font-size: 13px;
+}
+
+.setting-label {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
+.setting-checkbox {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.setting-checkbox .box {
+    -fx-background-color: red;
+    -fx-border-color: transparent;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.setting-checkbox:selected .box {
+    -fx-background-color: #00efa3;
+}
+
+.setting-checkbox:selected .mark {
+    -fx-background-color: #1f1f1f;
+}
+
+.always-checkbox {
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+}
+
+.always-checkbox .box {
+    -fx-background-color: red;
+    -fx-border-color: transparent;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.always-checkbox:selected .box {
+    -fx-background-color: #00efa3;
+}
+
+.always-checkbox:selected .mark {
+    -fx-background-color: #1f1f1f;
+}
