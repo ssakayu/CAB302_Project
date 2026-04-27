@@ -1,10 +1,14 @@
 package com.focusdesk.controller.widget;
 
 import com.focusdesk.app.App;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -38,13 +42,25 @@ public class WidgetWindowManager {
 
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/widget.fxml"));
-            Scene scene = new Scene(loader.load());
+            Parent root = loader.load();
+            Rectangle clip = new Rectangle();
+            clip.setArcWidth(36);
+            clip.setArcHeight(36);
+            clip.widthProperty().bind(Bindings.createDoubleBinding(
+                () -> root.getLayoutBounds().getWidth(),
+                root.layoutBoundsProperty()
+            ));
+            clip.heightProperty().bind(Bindings.createDoubleBinding(
+                () -> root.getLayoutBounds().getHeight(),
+                root.layoutBoundsProperty()
+            ));
+            root.setClip(clip);
+
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
 
             widgetStage = new Stage();
-            widgetStage.initStyle(StageStyle.UNDECORATED);
-            if (ownerStage != null) {
-                widgetStage.initOwner(ownerStage); // keeps it off the taskbar
-            }
+            widgetStage.initStyle(StageStyle.TRANSPARENT);
             widgetStage.setAlwaysOnTop(true);
             widgetStage.setTitle("FocusDesk Widget");
 

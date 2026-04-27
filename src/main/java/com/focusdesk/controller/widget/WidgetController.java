@@ -1,5 +1,6 @@
 package com.focusdesk.controller.widget;
 
+import com.focusdesk.app.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -8,7 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.List;
 
 public class WidgetController {
@@ -63,6 +63,23 @@ public class WidgetController {
 
         stage.setX(event.getScreenX() - dragOffsetX);
         stage.setY(event.getScreenY() - dragOffsetY);
+    }
+
+    @FXML
+    private void minimizeToMain() {
+        Stage widgetStage = getStage();
+        if (widgetStage != null) {
+            widgetStage.hide();
+        }
+
+        Stage mainStage = Session.get().getMainStage();
+        if (mainStage != null) {
+            if (!mainStage.isShowing()) {
+                mainStage.show();
+            }
+            mainStage.toFront();
+            mainStage.requestFocus();
+        }
     }
 
     private Stage getStage() {
