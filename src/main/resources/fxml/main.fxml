@@ -71,9 +71,9 @@
         </VBox>
     </left>
 
-    <!-- CENTER: blank content area -->
+    <!-- CENTER: content area — pages loaded here by MainController -->
     <center>
-        <StackPane styleClass="content-area"/>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
     </center>
 
 </BorderPane>

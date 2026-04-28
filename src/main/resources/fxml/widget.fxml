@@ -38,12 +38,21 @@
                 <Label text="Session 1 of 4" styleClass="timer-label"/>
             </VBox>
 
-            <!-- Slide 2: Notes -->
-            <VBox maxWidth="Infinity" maxHeight="Infinity">
-                <TextArea promptText="Start typing your notes..."
-                          styleClass="notes-area"
+            <!-- Slide 2: Notes — quick-write; view in main window -->
+            <VBox spacing="8" maxWidth="Infinity" maxHeight="Infinity"
+                  StackPane.alignment="TOP_LEFT">
+                <TextArea fx:id="quickNoteInput"
+                          promptText="Write a quick note..."
+                          styleClass="widget-note-input"
                           wrapText="true"
                           VBox.vgrow="ALWAYS"/>
+                <HBox alignment="CENTER_RIGHT" spacing="8">
+                    <Label fx:id="noteSavedLabel" text="✓ Saved"
+                           styleClass="note-saved-label"
+                           visible="false" managed="false"/>
+                    <Button text="Save" styleClass="widget-quick-save-btn"
+                            onAction="#onQuickNoteSave"/>
+                </HBox>
             </VBox>
 
             <!-- Slide 3: Calendar -->

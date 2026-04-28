@@ -180,6 +180,52 @@
     -fx-max-width: 8;
 }
 
+/* ===== Widget notes slide ===== */
+.widget-note-input {
+    -fx-background-color: #f9f9f9;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 4;
+    -fx-border-width: 1;
+    -fx-font-size: 12px;
+    -fx-text-fill: #2c2c2c;
+    -fx-prompt-text-fill: #bbb;
+}
+
+.widget-note-input:focused {
+    -fx-border-color: #1a73e8;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.widget-quick-save-btn {
+    -fx-background-color: #1a73e8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 14 5 14;
+    -fx-cursor: hand;
+}
+
+.widget-quick-save-btn:hover {
+    -fx-background-color: #1558c0;
+}
+
+.widget-quick-save-btn:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.note-saved-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34a853;
+}
+
 /* ===== Resize handle (SE corner) ===== */
 .resize-handle {
     -fx-background-color: transparent;

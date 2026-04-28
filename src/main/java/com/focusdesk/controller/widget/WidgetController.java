@@ -1,12 +1,16 @@
 package com.focusdesk.controller.widget;
 
 import com.focusdesk.app.Session;
+import com.focusdesk.dao.NoteDAO;
+import com.focusdesk.util.TaskRunner;
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -25,6 +29,10 @@ public class WidgetController {
     @FXML private Button nextBtn;
     @FXML private Region resizeHandle;
 
+    // Notes slide
+    @FXML private TextArea quickNoteInput;
+    @FXML private Label noteSavedLabel;
+
     private static final String[] TITLES = {"To-Do", "Timer", "Notes", "Calendar", "Music"};
     private static final double MIN_W = 300, MAX_W = 500;
     private static final double MIN_H = 150, MAX_H = 300;
@@ -32,10 +40,7 @@ public class WidgetController {
     private List<Node> slides;
     private int currentIndex = 0;
 
-    // Drag state
     private double dragOffsetX, dragOffsetY;
-
-    // Resize state
     private double resizeStartX, resizeStartY;
     private double resizeStartW, resizeStartH;
 
@@ -55,7 +60,7 @@ public class WidgetController {
     }
 
     // -------------------------------------------------------------------------
-    // Navigation — wraps around at both ends
+    // Navigation — wraps at both ends
     // -------------------------------------------------------------------------
 
     @FXML
@@ -89,7 +94,7 @@ public class WidgetController {
     }
 
     // -------------------------------------------------------------------------
-    // Dot indicators
+    // Dots
     // -------------------------------------------------------------------------
 
     private void buildDots() {
@@ -107,7 +112,7 @@ public class WidgetController {
     }
 
     // -------------------------------------------------------------------------
-    // Drag — move the window by dragging the header
+    // Drag
     // -------------------------------------------------------------------------
 
     private void setupDrag() {
@@ -116,7 +121,6 @@ public class WidgetController {
             dragOffsetX = e.getScreenX() - stage.getX();
             dragOffsetY = e.getScreenY() - stage.getY();
         });
-
         header.setOnMouseDragged(e -> {
             Stage stage = (Stage) header.getScene().getWindow();
             stage.setX(e.getScreenX() - dragOffsetX);
@@ -130,7 +134,6 @@ public class WidgetController {
 
     private void setupResize() {
         resizeHandle.setCursor(Cursor.SE_RESIZE);
-
         resizeHandle.setOnMousePressed(e -> {
             Stage stage = (Stage) resizeHandle.getScene().getWindow();
             resizeStartX = e.getScreenX();
@@ -139,7 +142,6 @@ public class WidgetController {
             resizeStartH = stage.getHeight();
             e.consume();
         });
-
         resizeHandle.setOnMouseDragged(e -> {
             Stage stage = (Stage) resizeHandle.getScene().getWindow();
             double newW = resizeStartW + (e.getScreenX() - resizeStartX);
@@ -148,6 +150,33 @@ public class WidgetController {
             stage.setHeight(Math.max(MIN_H, Math.min(MAX_H, newH)));
             e.consume();
         });
+    }
+
+    // -------------------------------------------------------------------------
+    // Notes slide — write and save a quick note
+    // -------------------------------------------------------------------------
+
+    @FXML
+    private void onQuickNoteSave() {
+        String text = quickNoteInput.getText().trim();
+        if (text.isEmpty()) return;
+
+        int userId = Session.get().getCurrentUser().getId();
+        TaskRunner.run(
+                () -> { new NoteDAO().insert(userId, text); return null; },
+                ignored -> {
+                    quickNoteInput.clear();
+                    noteSavedLabel.setVisible(true);
+                    noteSavedLabel.setManaged(true);
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                    pause.setOnFinished(e -> {
+                        noteSavedLabel.setVisible(false);
+                        noteSavedLabel.setManaged(false);
+                    });
+                    pause.play();
+                },
+                err -> System.err.println("Quick note save failed: " + err.getMessage())
+        );
     }
 
     // -------------------------------------------------------------------------

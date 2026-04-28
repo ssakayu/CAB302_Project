@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  Root is a StackPane so the modal overlay can sit on top of the page content.
+-->
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.focusdesk.controller.NotesController"
+           maxWidth="Infinity" maxHeight="Infinity"
+           stylesheets="@../css/notes.css">
+
+    <!-- ===== Main content ===== -->
+    <VBox styleClass="notes-page" maxWidth="Infinity" maxHeight="Infinity">
+
+        <!-- Top bar: heading | spacer | search | new-note button -->
+        <HBox styleClass="notes-topbar" alignment="CENTER_LEFT">
+            <Label text="Notes" styleClass="notes-heading"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="searchField"
+                       promptText="Search notes..."
+                       styleClass="notes-search"
+                       onKeyReleased="#onSearch"/>
+            <Button text="+ New Note" styleClass="notes-new-btn"
+                    onAction="#onNewNote">
+                <HBox.margin><Insets left="12"/></HBox.margin>
+            </Button>
+        </HBox>
+
+        <!-- Scrollable masonry-style flow of note cards -->
+        <ScrollPane styleClass="notes-scroll"
+                    fitToWidth="true"
+                    VBox.vgrow="ALWAYS">
+            <FlowPane fx:id="noteGrid" styleClass="note-grid" hgap="14" vgap="14">
+                <padding><Insets top="4" right="4" bottom="12" left="4"/></padding>
+            </FlowPane>
+        </ScrollPane>
+
+    </VBox>
+
+    <!-- ===== Modal overlay (hidden until user opens a note) ===== -->
+    <VBox fx:id="modalOverlay"
+          styleClass="modal-overlay"
+          alignment="CENTER"
+          maxWidth="Infinity" maxHeight="Infinity"
+          visible="false" managed="false">
+
+        <!-- Dialog card -->
+        <VBox styleClass="note-modal">
+
+            <!-- Header -->
+            <HBox styleClass="modal-header" alignment="CENTER_LEFT">
+                <Label fx:id="modalTitleLabel" text="New Note"
+                       styleClass="modal-title" HBox.hgrow="ALWAYS"/>
+                <Button text="✕" styleClass="modal-close-btn"
+                        onAction="#onModalClose"/>
+            </HBox>
+
+            <!-- Scrollable text area -->
+            <TextArea fx:id="noteContent"
+                      styleClass="modal-textarea"
+                      wrapText="true"
+                      promptText="Write your note here..."
+                      VBox.vgrow="ALWAYS"/>
+
+            <!-- Footer: delete (only for existing notes) + save -->
+            <HBox styleClass="modal-footer" alignment="CENTER_RIGHT" spacing="8">
+                <Button fx:id="deleteBtn" text="Delete"
+                        styleClass="modal-delete-btn"
+                        onAction="#onDelete"
+                        visible="false" managed="false"/>
+                <Button text="Save" styleClass="modal-save-btn"
+                        onAction="#onSave"/>
+            </HBox>
+
+        </VBox>
+    </VBox>
+
+</StackPane>
