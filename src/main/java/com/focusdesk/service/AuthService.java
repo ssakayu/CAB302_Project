@@ -11,19 +11,27 @@ public class AuthService {
     private final PreferenceDAO prefDAO = new PreferenceDAO();
 
     public User signUp(String username, String email, String plainPassword) throws Exception {
-        if (username == null || username.isBlank())
-            throw new IllegalArgumentException("Username required");
-        if (email == null || email.isBlank())
-            throw new IllegalArgumentException("Email required");
-        if (plainPassword == null || plainPassword.length() < 6)
-            throw new IllegalArgumentException("Password min 6 chars");
+        username = username == null ? "" : username.trim();
+        email = email == null ? "" : email.trim().toLowerCase();
 
-        User existing = userDAO.findByEmail(email);
-        if (existing != null)
+        if (username.isBlank())
+            throw new IllegalArgumentException("Username required");
+        if (username.length() < 3)
+            throw new IllegalArgumentException("Username must be at least 3 characters");
+        if (email.isBlank())
+            throw new IllegalArgumentException("Email required");
+        if (!email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"))
+            throw new IllegalArgumentException("Invalid email address");
+        if (plainPassword == null || plainPassword.length() < 6)
+            throw new IllegalArgumentException("Password must be at least 6 characters");
+
+        if (userDAO.findByUsername(username) != null)
+            throw new IllegalArgumentException("Username already taken");
+        if (userDAO.findByEmail(email) != null)
             throw new IllegalArgumentException("Email already registered");
 
         String hash = BCrypt.hashpw(plainPassword, BCrypt.gensalt(10));
-        User created = userDAO.create(username.trim(), email.trim(), hash);
+        User created = userDAO.create(username, email, hash);
 
         // create default preferences row
         prefDAO.ensureDefaultRow(created.getId());
@@ -32,6 +40,7 @@ public class AuthService {
     }
 
     public User login(String email, String plainPassword) throws Exception {
+        email = email == null ? "" : email.trim().toLowerCase();
         User user = userDAO.findByEmail(email);
         if (user == null)
             throw new IllegalArgumentException("Invalid email or password");

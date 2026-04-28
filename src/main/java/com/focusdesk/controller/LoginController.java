@@ -22,10 +22,15 @@ public class LoginController {
 
     @FXML
     private void onLogin() {
-        messageLabel.setText("Logging in...");
-
         String email = emailField.getText().trim();
         String pass = passwordField.getText();
+
+        if (email.isEmpty() || pass.isEmpty()) {
+            messageLabel.setText("Please enter your email and password");
+            return;
+        }
+
+        messageLabel.setText("Logging in...");
 
         TaskRunner.run(
                 () -> auth.login(email, pass),

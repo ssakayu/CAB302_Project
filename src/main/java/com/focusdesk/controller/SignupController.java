@@ -25,7 +25,7 @@ public class SignupController {
 
     @FXML
     private void onSignup() {
-        String username = usernameField.getText();
+        String username = usernameField.getText().trim();
         String email = emailField.getText().trim();
         String pass = passwordField.getText();
         String confirm = confirmField.getText();
