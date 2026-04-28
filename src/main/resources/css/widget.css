@@ -179,3 +179,14 @@
     -fx-pref-width: 8;
     -fx-max-width: 8;
 }
+
+/* ===== Resize handle (SE corner) ===== */
+.resize-handle {
+    -fx-background-color: transparent;
+    -fx-cursor: se-resize;
+}
+
+.resize-handle:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.08);
+    -fx-background-radius: 3;
+}

@@ -74,12 +74,14 @@
         </StackPane>
     </center>
 
-    <!-- Navigation bar -->
+    <!-- Navigation bar + resize handle -->
     <bottom>
         <HBox fx:id="navBar" styleClass="widget-nav" alignment="CENTER" spacing="6">
             <Button fx:id="prevBtn" text="‹" styleClass="nav-arrow" onAction="#onPrev"/>
             <HBox fx:id="dotsContainer" spacing="6" alignment="CENTER" HBox.hgrow="ALWAYS"/>
             <Button fx:id="nextBtn" text="›" styleClass="nav-arrow" onAction="#onNext"/>
+            <!-- SE corner drag-to-resize handle -->
+            <Region fx:id="resizeHandle" styleClass="resize-handle" prefWidth="14" prefHeight="14"/>
         </HBox>
     </bottom>
 
