@@ -1,3 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx" />
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12" xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="com.focusdesk.controller.SignupController">
+  <padding>
+    <Insets top="24" right="24" bottom="24" left="24" />
+  </padding>
+
+  <Label text="Create Account" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+  <TextField fx:id="usernameField" promptText="Username" />
+  <TextField fx:id="emailField" promptText="Email" />
+  <PasswordField fx:id="passwordField" promptText="Password (min 6 chars)" />
+  <PasswordField fx:id="confirmField" promptText="Confirm Password" />
+
+  <Button text="Sign up" onAction="#onSignup" maxWidth="Infinity" />
+  <Button text="Back to login" onAction="#onGoLogin" maxWidth="Infinity" />
+
+  <Label fx:id="messageLabel" textFill="crimson" wrapText="true" />
+</VBox>

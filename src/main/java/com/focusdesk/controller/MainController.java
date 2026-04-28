@@ -6,15 +6,15 @@ import javafx.scene.control.Button;
 
 public class MainController {
 
-    @FXML private Button widgetToggleButton;
+    @FXML
+    private Button widgetToggleButton;
 
     @FXML
     private void initialize() {
         // Keep button label in sync with actual widget state,
         // including when the user closes the widget via its own close button
-        Session.get().widgetOpenProperty().addListener((obs, wasOpen, isOpen) ->
-                widgetToggleButton.setText(isOpen ? "Close Widget" : "Open Widget")
-        );
+        Session.get().widgetOpenProperty().addListener(
+                (obs, wasOpen, isOpen) -> widgetToggleButton.setText(isOpen ? "Close Widget" : "Open Widget"));
     }
 
     @FXML

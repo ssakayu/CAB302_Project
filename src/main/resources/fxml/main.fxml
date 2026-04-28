@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.focusdesk.controller.MainController"
-      alignment="TOP_LEFT" spacing="10"
-      style="-fx-padding: 20;">
-    <Button fx:id="widgetToggleButton" text="Open Widget" onAction="#toggleWidget" />
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12" xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="com.focusdesk.controller.MainController">
+  <padding>
+    <Insets top="24" right="24" bottom="24" left="24" />
+  </padding>
+
+  <Label fx:id="welcomeLabel" text="Welcome" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+  <Label text="(This is a placeholder main screen after login)" />
+
+  <Button text="Logout" onAction="#onLogout" maxWidth="Infinity" />
 </VBox>

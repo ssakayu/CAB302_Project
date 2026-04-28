@@ -31,13 +31,15 @@ public class Session {
     private final BooleanProperty widgetOpen = new SimpleBooleanProperty(false);
 
     // Last known widget geometry (in-memory only).
-    // TODO: load initial values from PreferenceDAO on login; persist on logout/close via PreferenceDAO
-    private double widgetX      = Double.NaN;
-    private double widgetY      = Double.NaN;
-    private double widgetWidth  = 380;
+    // TODO: load initial values from PreferenceDAO on login; persist on
+    // logout/close via PreferenceDAO
+    private double widgetX = Double.NaN;
+    private double widgetY = Double.NaN;
+    private double widgetWidth = 380;
     private double widgetHeight = 220;
 
-    private Session() {}
+    private Session() {
+    }
 
     public static Session getInstance() {
         if (instance == null) {
@@ -47,7 +49,9 @@ public class Session {
     }
 
     /** Convenience alias. */
-    public static Session get() { return getInstance(); }
+    public static Session get() {
+        return getInstance();
+    }
 
     // -------------------------------------------------------------------------
     // Auth
@@ -62,16 +66,21 @@ public class Session {
     public void logout() {
         closeWidget();
         this.currentUser = null;
-        this.tasks        = null;
-        this.notes        = null;
+        this.tasks = null;
+        this.notes = null;
     }
 
     // -------------------------------------------------------------------------
     // Main window
     // -------------------------------------------------------------------------
 
-    public void setMainStage(Stage stage) { this.mainStage = stage; }
-    public Stage getMainStage()           { return mainStage; }
+    public void setMainStage(Stage stage) {
+        this.mainStage = stage;
+    }
+
+    public Stage getMainStage() {
+        return mainStage;
+    }
 
     // -------------------------------------------------------------------------
     // Widget window
@@ -94,7 +103,7 @@ public class Session {
 
             widgetStage = new Stage();
             widgetStage.initStyle(StageStyle.UNDECORATED);
-            widgetStage.initOwner(mainStage);   // keeps it off the taskbar
+            widgetStage.initOwner(mainStage); // keeps it off the taskbar
             widgetStage.setAlwaysOnTop(true);
             widgetStage.setTitle("FocusDesk Widget");
 
@@ -114,19 +123,20 @@ public class Session {
             }
 
             // Track live geometry so memory stays current as the user moves/resizes
-            widgetStage.xProperty().addListener((obs, o, n)      -> widgetX      = n.doubleValue());
-            widgetStage.yProperty().addListener((obs, o, n)      -> widgetY      = n.doubleValue());
-            widgetStage.widthProperty().addListener((obs, o, n)  -> widgetWidth  = n.doubleValue());
+            widgetStage.xProperty().addListener((obs, o, n) -> widgetX = n.doubleValue());
+            widgetStage.yProperty().addListener((obs, o, n) -> widgetY = n.doubleValue());
+            widgetStage.widthProperty().addListener((obs, o, n) -> widgetWidth = n.doubleValue());
             widgetStage.heightProperty().addListener((obs, o, n) -> widgetHeight = n.doubleValue());
 
             // Persist final geometry when the window is about to hide
             widgetStage.setOnHiding(e -> {
-                widgetX      = widgetStage.getX();
-                widgetY      = widgetStage.getY();
-                widgetWidth  = widgetStage.getWidth();
+                widgetX = widgetStage.getX();
+                widgetY = widgetStage.getY();
+                widgetWidth = widgetStage.getWidth();
                 widgetHeight = widgetStage.getHeight();
                 widgetOpen.set(false);
-                // TODO: call PreferenceDAO.updateWidgetBounds(currentUser.getId(), widgetX, widgetY, widgetWidth, widgetHeight)
+                // TODO: call PreferenceDAO.updateWidgetBounds(currentUser.getId(), widgetX,
+                // widgetY, widgetWidth, widgetHeight)
             });
 
             widgetStage.setOnHidden(e -> widgetStage = null);
@@ -146,7 +156,7 @@ public class Session {
      */
     public void closeWidget() {
         if (widgetStage != null) {
-            widgetStage.hide();  // triggers setOnHiding then setOnHidden
+            widgetStage.hide(); // triggers setOnHiding then setOnHidden
         }
     }
 
@@ -154,13 +164,23 @@ public class Session {
         return widgetStage != null && widgetStage.isShowing();
     }
 
-    public BooleanProperty widgetOpenProperty() { return widgetOpen; }
+    public BooleanProperty widgetOpenProperty() {
+        return widgetOpen;
+    }
 
     // -------------------------------------------------------------------------
     // Getters
     // -------------------------------------------------------------------------
 
-    public User getCurrentUser()            { return currentUser; }
-    public ObservableList<Task> getTasks()  { return tasks; }
-    public ObservableList<Note> getNotes()  { return notes; }
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public ObservableList<Task> getTasks() {
+        return tasks;
+    }
+
+    public ObservableList<Note> getNotes() {
+        return notes;
+    }
 }
