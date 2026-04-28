@@ -1,5 +1,7 @@
 package com.focusdesk.app;
 
+import com.focusdesk.dao.NoteDAO;
+import com.focusdesk.dao.TaskDAO;
 import com.focusdesk.model.Note;
 import com.focusdesk.model.Task;
 import com.focusdesk.model.User;
@@ -59,8 +61,13 @@ public class Session {
 
     public void login(User user) {
         this.currentUser = user;
-        this.tasks = FXCollections.observableArrayList();
-        this.notes = FXCollections.observableArrayList();
+        try {
+            this.tasks = FXCollections.observableArrayList(new TaskDAO().listByUser(user.getId()));
+            this.notes = FXCollections.observableArrayList(new NoteDAO().listByUser(user.getId()));
+        } catch (Exception e) {
+            this.tasks = FXCollections.observableArrayList();
+            this.notes = FXCollections.observableArrayList();
+        }
     }
 
     public void logout() {
