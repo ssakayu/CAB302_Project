@@ -30,7 +30,7 @@ public class LoginController {
         TaskRunner.run(
                 () -> auth.login(email, pass),
                 user -> {
-                    Session.setCurrentUser(user);
+                    Session.get().login(user);
                     messageLabel.setText("");
                     try {
                         App.setRoot("main");

@@ -5,17 +5,19 @@
 <?import javafx.scene.layout.*?>
 
 <VBox spacing="12" xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.focusdesk.controller.LoginController">
-    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="com.focusdesk.controller.LoginController">
+  <padding>
+    <Insets top="24" right="24" bottom="24" left="24" />
+  </padding>
 
-    <Label text="FocusDesk Login" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+  <Label text="FocusDesk Login" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
-    <TextField fx:id="emailField" promptText="Email"/>
-    <PasswordField fx:id="passwordField" promptText="Password"/>
+  <TextField fx:id="emailField" promptText="Email" />
+  <PasswordField fx:id="passwordField" promptText="Password" />
 
-    <Button text="Login" onAction="#onLogin" maxWidth="Infinity"/>
-    <Button text="Create account" onAction="#onGoSignup" maxWidth="Infinity"/>
+  <Button text="Login" onAction="#onLogin" maxWidth="Infinity" />
+  <Button text="Create account" onAction="#onGoSignup" maxWidth="Infinity" />
 
-    <Label fx:id="messageLabel" textFill="crimson" wrapText="true"/>
+  <Label fx:id="messageLabel" textFill="crimson" wrapText="true" />
 </VBox>

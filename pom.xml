@@ -72,6 +72,16 @@
                     <useModulePath>false</useModulePath>
                 </configuration>
             </plugin>
+
+            <!-- Run the app with: mvn javafx:run -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.focusdesk.app.Main</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
