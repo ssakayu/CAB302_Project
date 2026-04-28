@@ -1,11 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.Label?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.focusdesk.controller.widget.WidgetController"
+            styleClass="widget-root"
+            stylesheets="@../css/widget.css"
             prefWidth="380" prefHeight="220">
+
+    <!-- Header — used as drag handle -->
+    <top>
+        <HBox fx:id="header" styleClass="widget-header" alignment="CENTER_LEFT">
+            <Label fx:id="slideTitle" text="To-Do" styleClass="widget-title" HBox.hgrow="ALWAYS"/>
+            <Button text="✕" styleClass="widget-close-btn" onAction="#onClose"/>
+        </HBox>
+    </top>
+
+    <!-- Slides stacked on top of each other; only one visible at a time -->
     <center>
-        <Label text="FocusDesk Widget" />
+        <StackPane fx:id="slideContainer" styleClass="slide-container">
+
+            <!-- Slide 0: To-Do -->
+            <VBox spacing="7" maxWidth="Infinity" maxHeight="Infinity" StackPane.alignment="TOP_LEFT">
+                <Label text="☐  Design wireframes" styleClass="todo-item"/>
+                <Label text="☑  Fix login bug" styleClass="todo-item todo-done"/>
+                <Label text="☐  Write unit tests" styleClass="todo-item"/>
+                <Label text="☐  Update README" styleClass="todo-item"/>
+            </VBox>
+
+            <!-- Slide 1: Pomodoro Timer -->
+            <VBox spacing="4" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                <Label text="FOCUS" styleClass="timer-label"/>
+                <Label text="25:00" styleClass="timer-display"/>
+                <Label text="Session 1 of 4" styleClass="timer-label"/>
+            </VBox>
+
+            <!-- Slide 2: Notes -->
+            <VBox maxWidth="Infinity" maxHeight="Infinity">
+                <TextArea promptText="Start typing your notes..."
+                          styleClass="notes-area"
+                          wrapText="true"
+                          VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+            <!-- Slide 3: Calendar -->
+            <VBox spacing="8" maxWidth="Infinity" maxHeight="Infinity" StackPane.alignment="TOP_LEFT">
+                <Label text="Mon, 28 Apr 2025" styleClass="calendar-date"/>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Region styleClass="event-dot event-dot-blue"/>
+                    <Label text="9:00 AM  Team standup" styleClass="event-label"/>
+                </HBox>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Region styleClass="event-dot event-dot-green"/>
+                    <Label text="2:00 PM  Code review" styleClass="event-label"/>
+                </HBox>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Region styleClass="event-dot event-dot-orange"/>
+                    <Label text="4:00 PM  Sprint planning" styleClass="event-label"/>
+                </HBox>
+            </VBox>
+
+            <!-- Slide 4: Music -->
+            <VBox spacing="4" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                <Label text="♪" styleClass="music-note"/>
+                <Label text="NOW PLAYING" styleClass="timer-label"/>
+                <Label text="Lofi Hip Hop Radio" styleClass="music-title"/>
+                <Label text="ChilledCow" styleClass="timer-label"/>
+            </VBox>
+
+        </StackPane>
     </center>
+
+    <!-- Navigation bar -->
+    <bottom>
+        <HBox fx:id="navBar" styleClass="widget-nav" alignment="CENTER" spacing="6">
+            <Button fx:id="prevBtn" text="‹" styleClass="nav-arrow" onAction="#onPrev"/>
+            <HBox fx:id="dotsContainer" spacing="6" alignment="CENTER" HBox.hgrow="ALWAYS"/>
+            <Button fx:id="nextBtn" text="›" styleClass="nav-arrow" onAction="#onNext"/>
+        </HBox>
+    </bottom>
+
 </BorderPane>
