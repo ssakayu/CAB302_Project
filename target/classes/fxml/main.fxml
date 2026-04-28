@@ -14,5 +14,6 @@
   <Label fx:id="welcomeLabel" text="Welcome" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
   <Label text="(This is a placeholder main screen after login)" />
 
+  <Button fx:id="widgetToggleButton" text="Open Widget" onAction="#toggleWidget" maxWidth="Infinity" />
   <Button text="Logout" onAction="#onLogout" maxWidth="Infinity" />
 </VBox>

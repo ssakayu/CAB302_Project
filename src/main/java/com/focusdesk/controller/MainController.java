@@ -1,5 +1,6 @@
 package com.focusdesk.controller;
 
+import com.focusdesk.app.App;
 import com.focusdesk.app.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,6 +25,16 @@ public class MainController {
             session.closeWidget();
         } else {
             session.openWidget();
+        }
+    }
+
+    @FXML
+    private void onLogout() {
+        Session.get().logout();
+        try {
+            App.setRoot("login");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
