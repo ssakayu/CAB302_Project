@@ -24,7 +24,7 @@
             <Label fx:id="slideTitleLabel" text="Pomodoro" style="-fx-text-fill: #8ca4cc; -fx-font-size: 11;"/>
             <Label fx:id="slideCounterLabel" text="1 / 4" style="-fx-text-fill: #8ca4cc; -fx-font-size: 11;"/>
             <Button text="_" onAction="#minimizeToMain"
-                    style="-fx-background-color: transparent; -fx-text-fill: #b8c7e6; -fx-font-size: 14; -fx-font-weight: bold; -fx-padding: 0 6 2 6;"/>
+                    style="-fx-background-color: transparent; -fx-text-fill: #b8c7e6; -fx-font-size: 14; -fx-font-weight: bold; -fx-padding: 0 6 0 6; -fx-translate-y: -6;"/>
         </HBox>
     </top>
 

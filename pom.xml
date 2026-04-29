@@ -72,6 +72,19 @@
                 </configuration>
             </plugin>
 
+            <!-- Generate Javadocs for GitHub Pages -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.2</version>
+                <configuration>
+                    <source>${maven.compiler.release}</source>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <docencoding>${project.build.sourceEncoding}</docencoding>
+                    <charset>${project.build.sourceEncoding}</charset>
+                </configuration>
+            </plugin>
+
             <!-- Run the app with: mvn javafx:run -->
             <plugin>
                 <groupId>org.openjfx</groupId>

@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 public class WidgetWindowManager {
 
-    private Stage ownerStage;
+    public Stage ownerStage;
     private Stage widgetStage;
 
     private final BooleanProperty widgetOpen = new SimpleBooleanProperty(false);
