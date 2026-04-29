@@ -32,8 +32,8 @@ public class MainController {
         Platform.runLater(() -> {
             Stage stage = (Stage) widgetToggleButton.getScene().getWindow();
             stage.setTitle("FocusDesk");
-            stage.setWidth(900);
-            stage.setHeight(620);
+            stage.setWidth(1280);
+            stage.setHeight(760);
             stage.centerOnScreen();
         });
     }
@@ -48,6 +48,7 @@ public class MainController {
         if (!(selected instanceof ToggleButton tb)) return;
 
         switch (tb.getText()) {
+            case "Calendar" -> loadPage("calendar_slide");
             case "Notes"  -> loadPage("notes_page");
             default       -> contentArea.getChildren().clear();
         }

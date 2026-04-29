@@ -62,6 +62,19 @@ CREATE TABLE IF NOT EXISTS pomodoro_sessions (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
 
+-- OAUTH TOKENS
+CREATE TABLE IF NOT EXISTS oauth_tokens (
+                                            user_id INTEGER NOT NULL,
+                                            provider TEXT NOT NULL,
+                                            access_token TEXT NOT NULL,
+                                            refresh_token TEXT,
+                                            token_type TEXT,
+                                            scope TEXT,
+                                            expires_at TEXT,
+                                            PRIMARY KEY (user_id, provider),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+
 -- Helpful indexes
 CREATE INDEX IF NOT EXISTS idx_tasks_user ON tasks(user_id);
 CREATE INDEX IF NOT EXISTS idx_notes_user ON notes(user_id);
