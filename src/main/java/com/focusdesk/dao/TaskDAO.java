@@ -33,15 +33,7 @@ public class TaskDAO {
             ps.setInt(1, userId);
 
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    out.add(new Task(
-                            rs.getInt("id"),
-                            rs.getInt("user_id"),
-                            rs.getString("title"),
-                            rs.getInt("is_done") == 1,
-                            rs.getString("priority")
-                    ));
-                }
+                while (rs.next()) out.add(fromRow(rs));
             }
         }
         return out;
