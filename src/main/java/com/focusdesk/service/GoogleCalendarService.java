@@ -34,7 +34,7 @@ public class GoogleCalendarService {
     private static final Pattern TOKEN_TYPE_PATTERN = Pattern.compile("\"token_type\"\\s*:\\s*\"([^\"]+)\"");
     private static final Pattern EXPIRES_IN_PATTERN = Pattern.compile("\"expires_in\"\\s*:\\s*(\\d+)");
     private static final Pattern SCOPE_PATTERN = Pattern.compile("\"scope\"\\s*:\\s*\"([^\"]+)\"");
-    private static final Pattern EVENT_KIND_PATTERN = Pattern.compile("\"kind\"\\s*:\\s*\"calendar#event\"");
+    private static final Pattern EVENT_OBJECT_PATTERN = Pattern.compile("\\{\\s*\"kind\"\\s*:\\s*\"calendar#event\"");
     private static final Pattern SUMMARY_PATTERN = Pattern.compile("\"summary\"\\s*:\\s*\"([^\"]*)\"");
     private static final Pattern DATE_TIME_PATTERN = Pattern.compile("\"dateTime\"\\s*:\\s*\"([^\"]+)\"");
 
@@ -191,7 +191,7 @@ public class GoogleCalendarService {
             } else if (current == '}' && !objectStarts.isEmpty()) {
                 int start = objectStarts.remove(objectStarts.size() - 1);
                 String object = json.substring(start, i + 1);
-                if (EVENT_KIND_PATTERN.matcher(object).find()) {
+                if (EVENT_OBJECT_PATTERN.matcher(object).find()) {
                     events.add(object);
                 }
             }
