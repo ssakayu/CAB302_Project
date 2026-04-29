@@ -191,7 +191,7 @@ public class GoogleCalendarService {
             } else if (current == '}' && !objectStarts.isEmpty()) {
                 int start = objectStarts.remove(objectStarts.size() - 1);
                 String object = json.substring(start, i + 1);
-                if (EVENT_OBJECT_PATTERN.matcher(object).find()) {
+                if (EVENT_OBJECT_PATTERN.matcher(object).lookingAt()) {
                     events.add(object);
                 }
             }
