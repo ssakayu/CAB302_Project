@@ -2,7 +2,6 @@ package com.focusdesk.service;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -58,7 +57,7 @@ class GoogleCalendarServiceTest {
                 }
                 """;
 
-        List<GoogleCalendarService.CalendarEvent> events = parseEvents(service, json, weekStart);
+        List<GoogleCalendarService.CalendarEvent> events = service.parseEvents(json, weekStart);
 
         assertEquals(2, events.size());
         assertEquals("CAB302 workshop", events.get(0).title());
@@ -100,7 +99,7 @@ class GoogleCalendarServiceTest {
                 }
                 """;
 
-        List<GoogleCalendarService.CalendarEvent> events = parseEvents(service, json, weekStart);
+        List<GoogleCalendarService.CalendarEvent> events = service.parseEvents(json, weekStart);
 
         assertTrue(events.isEmpty());
     }
@@ -122,21 +121,10 @@ class GoogleCalendarServiceTest {
                 }
                 """;
 
-        List<GoogleCalendarService.CalendarEvent> events = parseEvents(service, json, weekStart);
+        List<GoogleCalendarService.CalendarEvent> events = service.parseEvents(json, weekStart);
 
         assertEquals(1, events.size());
         assertEquals(0.5, events.get(0).durationHours());
-    }
-
-    @SuppressWarnings("unchecked")
-    private List<GoogleCalendarService.CalendarEvent> parseEvents(
-            GoogleCalendarService service,
-            String json,
-            LocalDate weekStart
-    ) throws Exception {
-        Method method = GoogleCalendarService.class.getDeclaredMethod("parseEvents", String.class, LocalDate.class);
-        method.setAccessible(true);
-        return (List<GoogleCalendarService.CalendarEvent>) method.invoke(service, json, weekStart);
     }
 
     private Map<String, String> queryParams(URI uri) {

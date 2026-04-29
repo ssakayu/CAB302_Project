@@ -4,7 +4,6 @@ import com.focusdesk.dao.OAuthTokenDAO;
 import com.focusdesk.model.OAuthToken;
 import com.focusdesk.util.HttpUtil;
 
-import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
@@ -143,7 +142,7 @@ public class GoogleCalendarService {
         );
     }
 
-    private List<CalendarEvent> parseEvents(String json, LocalDate weekStart) throws IOException {
+    List<CalendarEvent> parseEvents(String json, LocalDate weekStart) {
         List<CalendarEvent> parsed = new ArrayList<>();
         for (String item : eventObjects(json)) {
             String summary = capture(item, SUMMARY_PATTERN);
@@ -190,14 +189,18 @@ public class GoogleCalendarService {
                 objectStarts.add(i);
             } else if (current == '}' && !objectStarts.isEmpty()) {
                 int start = objectStarts.remove(objectStarts.size() - 1);
-                String object = json.substring(start, i + 1);
-                if (EVENT_OBJECT_PATTERN.matcher(object).lookingAt()) {
-                    events.add(object);
+                String candidate = json.substring(start, i + 1);
+                if (isCalendarEventObject(candidate)) {
+                    events.add(candidate);
                 }
             }
         }
 
         return events;
+    }
+
+    private boolean isCalendarEventObject(String object) {
+        return EVENT_OBJECT_PATTERN.matcher(object).lookingAt();
     }
 
     private List<String> captureAll(String source, Pattern pattern) {
