@@ -1,43 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.focusdesk.controller.widget.WidgetController"
-            prefWidth="430" prefHeight="260"
-            style="-fx-background-color: #1b1f27; -fx-background-radius: 18; -fx-background-insets: 0; -fx-border-color: #2f3443; -fx-border-radius: 18; -fx-border-insets: 0; -fx-border-width: 1;">
+            styleClass="widget-root"
+            stylesheets="@../css/widget.css"
+            prefWidth="380" prefHeight="220">
 
+    <!-- Header — used as drag handle -->
     <top>
-        <HBox fx:id="headerBar" alignment="CENTER_LEFT" spacing="8"
-              onMousePressed="#startDrag" onMouseDragged="#dragWidget"
-              style="-fx-background-color: #171b22; -fx-background-radius: 18 18 0 0; -fx-padding: 8 10 8 10;">
-            <Label text="FocusDesk Widget" style="-fx-text-fill: #f0f4ff; -fx-font-size: 13; -fx-font-weight: bold;"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="slideTitleLabel" text="Pomodoro" style="-fx-text-fill: #8ca4cc; -fx-font-size: 11;"/>
-            <Label fx:id="slideCounterLabel" text="1 / 4" style="-fx-text-fill: #8ca4cc; -fx-font-size: 11;"/>
-            <Button text="_" onAction="#minimizeToMain"
-                    style="-fx-background-color: transparent; -fx-text-fill: #b8c7e6; -fx-font-size: 14; -fx-font-weight: bold; -fx-padding: 0 6 0 6; -fx-translate-y: -6;"/>
+        <HBox fx:id="header" styleClass="widget-header" alignment="CENTER_LEFT">
+            <Label fx:id="slideTitle" text="To-Do" styleClass="widget-title" HBox.hgrow="ALWAYS"/>
+            <Button text="✕" styleClass="widget-close-btn" onAction="#onClose"/>
         </HBox>
     </top>
 
+    <!-- Slides stacked on top of each other; only one visible at a time -->
     <center>
-        <VBox spacing="8" style="-fx-padding: 10;">
-            <StackPane fx:id="slideHost" VBox.vgrow="ALWAYS"
-                       style="-fx-background-color: #242a36; -fx-background-radius: 14; -fx-padding: 8;"/>
-            <HBox alignment="CENTER" spacing="10">
-                <Button text="◀" onAction="#showPreviousSlide"
-                        style="-fx-background-color: #2c3442; -fx-text-fill: #e5ebff; -fx-background-radius: 20; -fx-min-width: 36; -fx-min-height: 36;"/>
-                <Button text="▶" onAction="#showNextSlide"
-                        style="-fx-background-color: #2c3442; -fx-text-fill: #e5ebff; -fx-background-radius: 20; -fx-min-width: 36; -fx-min-height: 36;"/>
-            </HBox>
-        </VBox>
+        <StackPane fx:id="slideContainer" styleClass="slide-container">
+
+            <!-- Slide 0: To-Do -->
+            <VBox spacing="7" maxWidth="Infinity" maxHeight="Infinity" StackPane.alignment="TOP_LEFT">
+                <Label text="☐  Design wireframes" styleClass="todo-item"/>
+                <Label text="☑  Fix login bug" styleClass="todo-item todo-done"/>
+                <Label text="☐  Write unit tests" styleClass="todo-item"/>
+                <Label text="☐  Update README" styleClass="todo-item"/>
+            </VBox>
+
+            <!-- Slide 1: Pomodoro Timer -->
+            <VBox spacing="4" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                <Label text="FOCUS" styleClass="timer-label"/>
+                <Label text="25:00" styleClass="timer-display"/>
+                <Label text="Session 1 of 4" styleClass="timer-label"/>
+            </VBox>
+
+            <!-- Slide 2: Notes — quick-write; view in main window -->
+            <VBox spacing="8" maxWidth="Infinity" maxHeight="Infinity"
+                  StackPane.alignment="TOP_LEFT">
+                <TextArea fx:id="quickNoteInput"
+                          promptText="Write a quick note..."
+                          styleClass="widget-note-input"
+                          wrapText="true"
+                          VBox.vgrow="ALWAYS"/>
+                <HBox alignment="CENTER_RIGHT" spacing="8">
+                    <Label fx:id="noteSavedLabel" text="✓ Saved"
+                           styleClass="note-saved-label"
+                           visible="false" managed="false"/>
+                    <Button text="Save" styleClass="widget-quick-save-btn"
+                            onAction="#onQuickNoteSave"/>
+                </HBox>
+            </VBox>
+
+            <!-- Slide 3: Calendar -->
+            <VBox spacing="8" maxWidth="Infinity" maxHeight="Infinity" StackPane.alignment="TOP_LEFT">
+                <Label text="Mon, 28 Apr 2025" styleClass="calendar-date"/>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Region styleClass="event-dot event-dot-blue"/>
+                    <Label text="9:00 AM  Team standup" styleClass="event-label"/>
+                </HBox>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Region styleClass="event-dot event-dot-green"/>
+                    <Label text="2:00 PM  Code review" styleClass="event-label"/>
+                </HBox>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Region styleClass="event-dot event-dot-orange"/>
+                    <Label text="4:00 PM  Sprint planning" styleClass="event-label"/>
+                </HBox>
+            </VBox>
+
+            <!-- Slide 4: Music -->
+            <VBox spacing="4" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                <Label text="♪" styleClass="music-note"/>
+                <Label text="NOW PLAYING" styleClass="timer-label"/>
+                <Label text="Lofi Hip Hop Radio" styleClass="music-title"/>
+                <Label text="ChilledCow" styleClass="timer-label"/>
+            </VBox>
+
+        </StackPane>
     </center>
+
+    <!-- Navigation bar + resize handle -->
+    <bottom>
+        <HBox fx:id="navBar" styleClass="widget-nav" alignment="CENTER" spacing="6">
+            <Button fx:id="prevBtn" text="‹" styleClass="nav-arrow" onAction="#onPrev"/>
+            <HBox fx:id="dotsContainer" spacing="6" alignment="CENTER" HBox.hgrow="ALWAYS"/>
+            <Button fx:id="nextBtn" text="›" styleClass="nav-arrow" onAction="#onNext"/>
+            <!-- SE corner drag-to-resize handle -->
+            <Region fx:id="resizeHandle" styleClass="resize-handle" prefWidth="14" prefHeight="14"/>
+        </HBox>
+    </bottom>
+
 </BorderPane>

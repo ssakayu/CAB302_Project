@@ -11,33 +11,39 @@ import javafx.scene.control.TextField;
 
 public class LoginController {
 
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private Label messageLabel;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private Label messageLabel;
 
     private final AuthService auth = new AuthService();
 
     @FXML
     private void onLogin() {
-        messageLabel.setText("Logging in...");
-
         String email = emailField.getText().trim();
         String pass = passwordField.getText();
+
+        if (email.isEmpty() || pass.isEmpty()) {
+            messageLabel.setText("Please enter your email and password");
+            return;
+        }
+
+        messageLabel.setText("Logging in...");
 
         TaskRunner.run(
                 () -> auth.login(email, pass),
                 user -> {
-                    Session.setCurrentUser(user);
+                    Session.get().login(user);
                     messageLabel.setText("");
                     try {
                         App.setRoot("main");
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        messageLabel.setText("Failed to open main screen: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+                        messageLabel.setText("Failed to open main screen");
                     }
                 },
-                err -> messageLabel.setText(err.getMessage())
-        );
+                err -> messageLabel.setText(err.getMessage()));
     }
 
     @FXML
@@ -45,8 +51,7 @@ public class LoginController {
         try {
             App.setRoot("signup");
         } catch (Exception e) {
-            e.printStackTrace();
-            messageLabel.setText("Failed to open signup: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+            messageLabel.setText("Failed to open signup");
         }
     }
 }

@@ -14,7 +14,7 @@ public class PomodoroDAO {
     public PomodoroSession logSession(int userId, int focusMinutes) throws Exception {
         String sql = "INSERT INTO pomodoro_sessions(user_id, focus_minutes) VALUES(?, ?)";
         try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, userId);
             ps.setInt(2, focusMinutes);
@@ -34,7 +34,7 @@ public class PomodoroDAO {
         List<PomodoroSession> out = new ArrayList<>();
 
         try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+                PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, userId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -42,8 +42,7 @@ public class PomodoroDAO {
                     out.add(new PomodoroSession(
                             rs.getInt("id"),
                             rs.getInt("user_id"),
-                            rs.getInt("focus_minutes")
-                    ));
+                            rs.getInt("focus_minutes")));
                 }
             }
         }

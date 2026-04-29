@@ -10,17 +10,22 @@ import javafx.scene.control.TextField;
 
 public class SignupController {
 
-    @FXML private TextField usernameField;
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private PasswordField confirmField;
-    @FXML private Label messageLabel;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private PasswordField confirmField;
+    @FXML
+    private Label messageLabel;
 
     private final AuthService auth = new AuthService();
 
     @FXML
     private void onSignup() {
-        String username = usernameField.getText();
+        String username = usernameField.getText().trim();
         String email = emailField.getText().trim();
         String pass = passwordField.getText();
         String confirm = confirmField.getText();
@@ -42,8 +47,7 @@ public class SignupController {
                         messageLabel.setText("Created, but failed to go login");
                     }
                 },
-                err -> messageLabel.setText(err.getMessage())
-        );
+                err -> messageLabel.setText(err.getMessage()));
     }
 
     @FXML

@@ -13,10 +13,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        // init DB + tables
         DatabaseManager.init();
-        Session.getInstance().setMainStage(stage);
 
-        scene = new Scene(loadFXML("login"), 820, 700);
+        scene = new Scene(loadFXML("login"), 420, 520);
         stage.setTitle("FocusDesk - Auth");
         stage.setScene(scene);
         stage.show();

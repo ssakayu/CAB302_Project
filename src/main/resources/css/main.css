@@ -1,0 +1,113 @@
+/* ===== Sidebar ===== */
+.sidebar {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: transparent #e0e0e0 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-spacing: 1;
+}
+
+.app-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+    -fx-padding: 20 16 16 20;
+}
+
+.nav-section-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #9e9e9e;
+    -fx-padding: 14 16 4 20;
+}
+
+/* ===== Nav items (ToggleButton styled as flat list rows) ===== */
+.nav-item {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: #2c2c2c;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 9 16 9 20;
+    -fx-cursor: hand;
+}
+
+.nav-item:hover {
+    -fx-background-color: #ebebeb;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+/* Left-bar indicator using layered backgrounds */
+.nav-item:selected {
+    -fx-background-color: #1a73e8, #ddeeff;
+    -fx-background-insets: 0, 0 0 0 3;
+    -fx-background-radius: 0;
+    -fx-text-fill: #1a73e8;
+    -fx-font-weight: bold;
+}
+
+.nav-item:selected:hover {
+    -fx-background-color: #1a73e8, #cce4f7;
+    -fx-background-insets: 0, 0 0 0 3;
+    -fx-background-radius: 0;
+}
+
+/* Suppress focus ring on nav items */
+.nav-item:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* ===== Launch Widget button ===== */
+.launch-widget-btn {
+    -fx-background-color: #1a73e8;
+    -fx-background-radius: 6;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 16 10 16;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+.launch-widget-btn:hover {
+    -fx-background-color: #1558c0;
+}
+
+.launch-widget-btn:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* ===== Logout button ===== */
+.logout-btn {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-text-fill: #9e9e9e;
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 8 16 10 20;
+    -fx-cursor: hand;
+}
+
+.logout-btn:hover {
+    -fx-background-color: #fce8e6;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-text-fill: #c62828;
+}
+
+.logout-btn:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* ===== Content area ===== */
+.content-area {
+    -fx-background-color: white;
+}

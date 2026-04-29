@@ -6,15 +6,16 @@ import javafx.concurrent.Task;
 import java.util.function.Consumer;
 
 public final class TaskRunner {
-    private TaskRunner() {}
+    private TaskRunner() {
+    }
 
     public static <T> void run(
             java.util.concurrent.Callable<T> work,
             Consumer<T> onSuccess,
-            Consumer<Throwable> onError
-    ) {
+            Consumer<Throwable> onError) {
         Task<T> task = new Task<>() {
-            @Override protected T call() throws Exception {
+            @Override
+            protected T call() throws Exception {
                 return work.call();
             }
         };

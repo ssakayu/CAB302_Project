@@ -26,6 +26,24 @@ public class UserDAO {
         throw new SQLException("Failed to create user");
     }
 
+    public User findByUsername(String username) throws Exception {
+        String sql = "SELECT id, username, email, password_hash FROM users WHERE username = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, username);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) return null;
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("password_hash")
+                );
+            }
+        }
+    }
+
     public User findByEmail(String email) throws Exception {
         String sql = "SELECT id, username, email, password_hash FROM users WHERE email = ?";
         try (Connection conn = DatabaseManager.getConnection();
