@@ -1,0 +1,400 @@
+.calendar-page {
+    -fx-background-color: linear-gradient(to bottom right, #f6f8fc, #eef3f8);
+}
+
+.calendar-heading {
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #162033;
+}
+
+.calendar-subheading {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6f7c91;
+}
+
+.calendar-badge {
+    -fx-background-color: #daf4df;
+    -fx-background-radius: 999;
+    -fx-text-fill: #267f4c;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 18 10 18;
+}
+
+.calendar-connect-btn {
+    -fx-background-color: #e9f2ff;
+    -fx-background-radius: 999;
+    -fx-border-color: #bcd0f5;
+    -fx-border-radius: 999;
+    -fx-border-width: 1;
+    -fx-text-fill: #1f5fc9;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 9 16 9 16;
+    -fx-cursor: hand;
+}
+
+.calendar-connect-btn:hover {
+    -fx-background-color: #dbeaff;
+}
+
+.calendar-connect-status {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.calendar-connect-status-ok {
+    -fx-text-fill: #2d8a57;
+}
+
+.calendar-connect-status-off {
+    -fx-text-fill: #7a889d;
+}
+
+.week-toolbar,
+.day-focus-card,
+.calendar-board {
+    -fx-background-color: rgba(255, 255, 255, 0.88);
+    -fx-background-radius: 24;
+    -fx-border-color: #dde5f1;
+    -fx-border-radius: 24;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(22, 32, 51, 0.07), 22, 0.18, 0, 8);
+}
+
+.week-toolbar {
+    -fx-padding: 16 20 16 20;
+}
+
+.week-nav-btn {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-border-color: #dde5f1;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-text-fill: #20314b;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 7 14 7 14;
+    -fx-cursor: hand;
+}
+
+.week-nav-btn:hover {
+    -fx-background-color: #eef4ff;
+    -fx-border-color: #b8cbef;
+}
+
+.week-toolbar-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8190a6;
+}
+
+.week-toolbar-range {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a2740;
+}
+
+.week-toolbar-meta {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #66758d;
+}
+
+.day-focus-card {
+    -fx-padding: 22;
+}
+
+.day-focus-sidebar {
+    -fx-pref-width: 320;
+    -fx-max-width: 320;
+}
+
+.today-heading,
+.agenda-heading,
+.board-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #182338;
+}
+
+.today-date {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #22324d;
+}
+
+.mini-calendar-card {
+    -fx-background-color: linear-gradient(to bottom right, #f8fbff, #f2f7ff);
+    -fx-background-radius: 18;
+    -fx-border-color: #dfe7f3;
+    -fx-border-radius: 18;
+    -fx-border-width: 1;
+    -fx-padding: 14;
+}
+
+.mini-calendar-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1c2940;
+}
+
+.mini-calendar-today-key {
+    -fx-background-color: #eaf3ff;
+    -fx-background-radius: 999;
+    -fx-text-fill: #3d6ed9;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 9 5 9;
+}
+
+.mini-calendar-weekday {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7b8aa1;
+    -fx-alignment: CENTER;
+    -fx-pref-width: 30;
+}
+
+.mini-calendar-day {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #e4eaf4;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-text-fill: #1f2d46;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 9 0 9 0;
+    -fx-cursor: hand;
+    -fx-pref-width: 32;
+    -fx-alignment: CENTER;
+}
+
+.mini-calendar-day-muted {
+    -fx-opacity: 0.45;
+}
+
+.mini-calendar-day-today {
+    -fx-background-color: #eaf3ff;
+    -fx-border-color: #8fb3f5;
+    -fx-text-fill: #245dc6;
+}
+
+.mini-calendar-day-selected {
+    -fx-background-color: #1f6fe5;
+    -fx-border-color: #1f6fe5;
+    -fx-text-fill: white;
+}
+
+.mini-calendar-day-event {
+    -fx-border-width: 1.5;
+}
+
+.calendar-board {
+    -fx-padding: 18;
+}
+
+.weekly-board-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+    -fx-fit-to-width: true;
+}
+
+.weekly-board-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.weekly-board-content {
+    -fx-padding: 0 2 2 0;
+}
+
+.weekly-day-schedule {
+    -fx-background-color: linear-gradient(to bottom right, #f8fbff, #f2f7ff);
+    -fx-background-radius: 18;
+    -fx-border-color: #dfe7f3;
+    -fx-border-radius: 18;
+    -fx-border-width: 1;
+    -fx-padding: 14;
+}
+
+.weekly-day-form {
+    -fx-background-color: rgba(255, 255, 255, 0.82);
+    -fx-background-radius: 14;
+    -fx-border-color: #e1e8f3;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 8;
+}
+
+.weekly-day-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #20314b;
+}
+
+.weekly-day-feedback {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.weekly-day-feedback-error {
+    -fx-text-fill: #c95545;
+}
+
+.weekly-day-feedback-success {
+    -fx-text-fill: #2d8a57;
+}
+
+.weekly-day-caption {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7a889d;
+}
+
+.weekly-day-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-color: #e2e8f2;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, rgba(22, 32, 51, 0.07), 10, 0.16, 0, 3);
+}
+
+.weekly-day-delete-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-color: #efc4bf;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-text-fill: #c95545;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 7 11 7 11;
+    -fx-cursor: hand;
+}
+
+.weekly-day-delete-btn:hover {
+    -fx-background-color: #fff0ee;
+}
+
+.weekly-day-input {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #dde5f1;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 9 11 9 11;
+    -fx-text-fill: #172236;
+    -fx-prompt-text-fill: #93a0b3;
+    -fx-font-size: 12px;
+}
+
+.weekly-day-input:focused {
+    -fx-border-color: #8db1f5;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.weekly-day-time-input {
+    -fx-pref-width: 118;
+}
+
+.weekly-day-add-btn {
+    -fx-background-color: #1f6fe5;
+    -fx-background-radius: 10;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 16 10 16;
+    -fx-cursor: hand;
+}
+
+.weekly-day-add-btn:hover {
+    -fx-background-color: #195dc0;
+}
+
+.weekly-day-card-timebox {
+    -fx-background-color: #f5f8fd;
+    -fx-background-radius: 12;
+    -fx-border-color: #e3eaf5;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-padding: 8 10 8 10;
+    -fx-min-width: 88;
+}
+
+.weekly-day-card-start {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f2e47;
+}
+
+.weekly-day-card-end {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7c8aa0;
+}
+
+.weekly-day-card-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #162033;
+}
+
+.weekly-day-card-subtitle {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #76849b;
+}
+
+.weekly-day-accent-blue {
+    -fx-border-color: #8caaf3;
+}
+
+.weekly-day-accent-green {
+    -fx-border-color: #8fcbab;
+}
+
+.weekly-day-accent-red {
+    -fx-border-color: #efaaa0;
+}
+
+.weekly-day-accent-purple {
+    -fx-border-color: #c9a9ef;
+}
+
+.weekly-day-accent-gold {
+    -fx-border-color: #dac97f;
+}
+
+.weekday-card {
+    -fx-background-color: #f4f7fb;
+    -fx-background-radius: 16;
+    -fx-border-color: #e3e9f3;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+.weekday-card-active {
+    -fx-background-color: linear-gradient(to right, #dbeafe, #e8f1ff);
+    -fx-border-color: #9dbcf6;
+}
+
+.weekday-name {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e2a3f;
+}
+
+.weekday-date {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6c7990;
+}

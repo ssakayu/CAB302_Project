@@ -1,3 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx" />
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.focusdesk.controller.widget.CalendarSlideController"
+      stylesheets="@../css/calendar.css"
+      styleClass="calendar-page"
+      spacing="20">
+
+    <HBox alignment="CENTER_LEFT" spacing="14">
+        <VBox spacing="4">
+            <Label text="Calendar" styleClass="calendar-heading"/>
+            <Label text="Clean weekly planning with a focused day timeline." styleClass="calendar-subheading"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox alignment="CENTER_RIGHT" spacing="6">
+            <Button fx:id="googleCalendarButton" text="Open Google Calendar" styleClass="calendar-connect-btn" onAction="#onConnectGoogleCalendar"/>
+            <Label fx:id="googleCalendarStatusLabel" text="Opens Google Calendar in your browser" styleClass="calendar-connect-status"/>
+        </VBox>
+    </HBox>
+
+    <HBox styleClass="week-toolbar" alignment="CENTER_LEFT" spacing="12">
+        <Button text="‹" styleClass="week-nav-btn" onAction="#onPreviousWeek"/>
+        <VBox spacing="2">
+            <Label text="Weekly View" styleClass="week-toolbar-label"/>
+            <Label fx:id="currentWeekLabel" styleClass="week-toolbar-range"/>
+        </VBox>
+        <Button text="›" styleClass="week-nav-btn" onAction="#onNextWeek"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="todayWeekLabel" styleClass="week-toolbar-meta"/>
+    </HBox>
+
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <VBox styleClass="calendar-board" spacing="16" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <Label text="Timetable" styleClass="board-title"/>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="weekly-board-scroll" VBox.vgrow="ALWAYS">
+                <content>
+                    <VBox spacing="16" styleClass="weekly-board-content">
+                        <HBox fx:id="weekdayHeader" spacing="12"/>
+
+                        <VBox styleClass="weekly-day-schedule" spacing="10">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Selected Day Schedule" styleClass="weekly-day-label"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="weeklyDayCaptionLabel" styleClass="weekly-day-caption"/>
+                            </HBox>
+                            <HBox styleClass="weekly-day-form" spacing="8">
+                                <TextField fx:id="eventTitleField" promptText="Event title" styleClass="weekly-day-input" HBox.hgrow="ALWAYS"/>
+                                <TextField fx:id="eventStartField" promptText="Start, e.g. 14:00 or 2PM" styleClass="weekly-day-input weekly-day-time-input"/>
+                                <TextField fx:id="eventEndField" promptText="End, e.g. 15:30 or 3:30PM" styleClass="weekly-day-input weekly-day-time-input"/>
+                                <Button text="+ Add" styleClass="weekly-day-add-btn" onAction="#onAddDayEvent"/>
+                            </HBox>
+                            <Label fx:id="eventFeedbackLabel" visible="false" managed="false" styleClass="weekly-day-feedback"/>
+                            <VBox fx:id="weeklyDayScheduleBox" spacing="10"/>
+                        </VBox>
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </VBox>
+
+        <VBox styleClass="day-focus-card day-focus-sidebar" spacing="14">
+            <HBox alignment="CENTER_LEFT">
+                <VBox spacing="4">
+                    <Label fx:id="dayPanelTitleLabel" text="Today" styleClass="today-heading"/>
+                    <Label fx:id="todayDateLabel" styleClass="today-date"/>
+                </VBox>
+            </HBox>
+
+            <Label fx:id="agendaTitleLabel" text="Month Overview" styleClass="agenda-heading"/>
+            <VBox styleClass="mini-calendar-card" spacing="12" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label fx:id="monthTitleLabel" styleClass="mini-calendar-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="Today" styleClass="mini-calendar-today-key"/>
+                </HBox>
+                <GridPane fx:id="monthHeaderGrid" hgap="8"/>
+                <GridPane fx:id="monthGrid" hgap="8" vgap="8" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </VBox>
+    </HBox>
+
+    <padding>
+        <Insets top="28" right="30" bottom="28" left="30"/>
+    </padding>
+
+</VBox>
