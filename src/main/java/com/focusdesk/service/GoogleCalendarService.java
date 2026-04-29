@@ -34,7 +34,7 @@ public class GoogleCalendarService {
     private static final Pattern TOKEN_TYPE_PATTERN = Pattern.compile("\"token_type\"\\s*:\\s*\"([^\"]+)\"");
     private static final Pattern EXPIRES_IN_PATTERN = Pattern.compile("\"expires_in\"\\s*:\\s*(\\d+)");
     private static final Pattern SCOPE_PATTERN = Pattern.compile("\"scope\"\\s*:\\s*\"([^\"]+)\"");
-    private static final Pattern ITEM_PATTERN = Pattern.compile("\\{\\s*\"kind\"\\s*:\\s*\"calendar#event\"(.*?)\\}\\s*(,|])", Pattern.DOTALL);
+    private static final Pattern EVENT_KIND_PATTERN = Pattern.compile("\"kind\"\\s*:\\s*\"calendar#event\"");
     private static final Pattern SUMMARY_PATTERN = Pattern.compile("\"summary\"\\s*:\\s*\"([^\"]*)\"");
     private static final Pattern DATE_TIME_PATTERN = Pattern.compile("\"dateTime\"\\s*:\\s*\"([^\"]+)\"");
 
@@ -145,9 +145,7 @@ public class GoogleCalendarService {
 
     private List<CalendarEvent> parseEvents(String json, LocalDate weekStart) throws IOException {
         List<CalendarEvent> parsed = new ArrayList<>();
-        Matcher itemMatcher = ITEM_PATTERN.matcher(json);
-        while (itemMatcher.find()) {
-            String item = itemMatcher.group(1);
+        for (String item : eventObjects(json)) {
             String summary = capture(item, SUMMARY_PATTERN);
             List<String> dateTimes = captureAll(item, DATE_TIME_PATTERN);
             if (summary == null || dateTimes.size() < 2) {
@@ -165,6 +163,41 @@ public class GoogleCalendarService {
             parsed.add(new CalendarEvent(summary, localDate, dayIndex, startHour, duration));
         }
         return parsed;
+    }
+
+    private List<String> eventObjects(String json) {
+        List<String> events = new ArrayList<>();
+        List<Integer> objectStarts = new ArrayList<>();
+        boolean inString = false;
+        boolean escaped = false;
+
+        for (int i = 0; i < json.length(); i++) {
+            char current = json.charAt(i);
+            if (inString) {
+                if (escaped) {
+                    escaped = false;
+                } else if (current == '\\') {
+                    escaped = true;
+                } else if (current == '"') {
+                    inString = false;
+                }
+                continue;
+            }
+
+            if (current == '"') {
+                inString = true;
+            } else if (current == '{') {
+                objectStarts.add(i);
+            } else if (current == '}' && !objectStarts.isEmpty()) {
+                int start = objectStarts.remove(objectStarts.size() - 1);
+                String object = json.substring(start, i + 1);
+                if (EVENT_KIND_PATTERN.matcher(object).find()) {
+                    events.add(object);
+                }
+            }
+        }
+
+        return events;
     }
 
     private List<String> captureAll(String source, Pattern pattern) {
