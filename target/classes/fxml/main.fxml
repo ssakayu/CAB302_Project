@@ -5,75 +5,75 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.focusdesk.controller.MainController"
-            stylesheets="@../css/main.css">
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.focusdesk.controller.MainController"
+    stylesheets="@../css/main.css">
 
     <fx:define>
-        <ToggleGroup fx:id="navGroup"/>
+        <ToggleGroup fx:id="navGroup" />
     </fx:define>
 
     <!-- LEFT: Sidebar -->
     <left>
         <VBox styleClass="sidebar" minWidth="200" prefWidth="200" maxWidth="200">
 
-            <Label text="FocusDesk" styleClass="app-title"/>
+            <Label text="FocusDesk" styleClass="app-title" />
 
             <!-- OVERVIEW -->
-            <Label text="OVERVIEW" styleClass="nav-section-label"/>
+            <Label text="OVERVIEW" styleClass="nav-section-label" />
             <ToggleButton text="Dashboard" styleClass="nav-item"
-                          toggleGroup="$navGroup" selected="true"
-                          maxWidth="Infinity" onAction="#onNavSelect"/>
+                toggleGroup="$navGroup" selected="true"
+                maxWidth="Infinity" onAction="#onNavSelect" />
             <ToggleButton text="Profile" styleClass="nav-item"
-                          toggleGroup="$navGroup"
-                          maxWidth="Infinity" onAction="#onNavSelect"/>
+                toggleGroup="$navGroup"
+                maxWidth="Infinity" onAction="#onNavSelect" />
 
             <!-- FEATURES -->
-            <Label text="FEATURES" styleClass="nav-section-label"/>
-            <ToggleButton text="Tasks" styleClass="nav-item"
-                          toggleGroup="$navGroup"
-                          maxWidth="Infinity" onAction="#onNavSelect"/>
+            <Label text="FEATURES" styleClass="nav-section-label" />
+            <ToggleButton text="To-do List" styleClass="nav-item"
+                toggleGroup="$navGroup"
+                maxWidth="Infinity" onAction="#onNavSelect" />
             <ToggleButton text="Notes" styleClass="nav-item"
-                          toggleGroup="$navGroup"
-                          maxWidth="Infinity" onAction="#onNavSelect"/>
+                toggleGroup="$navGroup"
+                maxWidth="Infinity" onAction="#onNavSelect" />
             <ToggleButton text="Calendar" styleClass="nav-item"
-                          toggleGroup="$navGroup"
-                          maxWidth="Infinity" onAction="#onNavSelect"/>
+                toggleGroup="$navGroup"
+                maxWidth="Infinity" onAction="#onNavSelect" />
             <ToggleButton text="Music" styleClass="nav-item"
-                          toggleGroup="$navGroup"
-                          maxWidth="Infinity" onAction="#onNavSelect"/>
+                toggleGroup="$navGroup"
+                maxWidth="Infinity" onAction="#onNavSelect" />
 
             <!-- SETTINGS -->
-            <Label text="SETTINGS" styleClass="nav-section-label"/>
+            <Label text="SETTINGS" styleClass="nav-section-label" />
             <ToggleButton text="Widget" styleClass="nav-item"
-                          toggleGroup="$navGroup"
-                          maxWidth="Infinity" onAction="#onNavSelect"/>
+                toggleGroup="$navGroup"
+                maxWidth="Infinity" onAction="#onNavSelect" />
             <ToggleButton text="Appearance" styleClass="nav-item"
-                          toggleGroup="$navGroup"
-                          maxWidth="Infinity" onAction="#onNavSelect"/>
+                toggleGroup="$navGroup"
+                maxWidth="Infinity" onAction="#onNavSelect" />
 
             <!-- Spacer -->
-            <Region VBox.vgrow="ALWAYS"/>
+            <Region VBox.vgrow="ALWAYS" />
 
             <!-- Launch Widget -->
             <Button fx:id="widgetToggleButton" text="Launch Widget"
-                    styleClass="launch-widget-btn"
-                    maxWidth="Infinity" onAction="#toggleWidget">
+                styleClass="launch-widget-btn"
+                maxWidth="Infinity" onAction="#toggleWidget">
                 <VBox.margin>
-                    <Insets top="0" right="12" bottom="4" left="12"/>
+                    <Insets top="0" right="12" bottom="4" left="12" />
                 </VBox.margin>
             </Button>
 
             <!-- Logout -->
             <Button text="Logout" styleClass="logout-btn"
-                    maxWidth="Infinity" onAction="#onLogout"/>
+                maxWidth="Infinity" onAction="#onLogout" />
 
         </VBox>
     </left>
 
     <!-- CENTER: content area — pages loaded here by MainController -->
     <center>
-        <StackPane fx:id="contentArea" styleClass="content-area"/>
+        <StackPane fx:id="contentArea" styleClass="content-area" />
     </center>
 
 </BorderPane>
