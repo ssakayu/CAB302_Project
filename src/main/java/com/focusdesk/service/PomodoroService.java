@@ -47,7 +47,7 @@ public class PomodoroService {
      */
     private void loadPreferences() {
         try {
-            int userId = Session.getCurrentUser().getId();
+            int userId = Session.get().getCurrentUser().getId();
             Preference prefs = preferenceDAO.getByUserId(userId);
             if (prefs != null) {
                 focusSeconds = prefs.getFocusMinutes() * 60;
@@ -100,7 +100,7 @@ public class PomodoroService {
         if (isFocusPhase) {
             // Log completed focus session
             try {
-                int userId = Session.getCurrentUser().getId();
+                int userId = Session.get().getCurrentUser().getId();
                 pomodoroDAO.logSession(userId, focusSeconds / 60);
             } catch (Exception e) {
                 e.printStackTrace();

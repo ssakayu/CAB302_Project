@@ -47,7 +47,7 @@ public class TimerSettingsController {
     @FXML
     private void onSave() {
         try {
-            int userId = Session.getCurrentUser().getId();
+            int userId = Session.get().getCurrentUser().getId();
             int focusMin = (int) focusSlider.getValue();
             int breakMin = (int) breakSlider.getValue();
             int longBreakMin = (int) longBreakSlider.getValue();

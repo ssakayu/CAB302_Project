@@ -10,12 +10,12 @@ com\focusdesk\controller\widget\TodoSlideController.class
 com\focusdesk\controller\MainController.class
 com\focusdesk\dao\OAuthTokenDAO.class
 com\focusdesk\util\TaskRunner.class
-com\focusdesk\controller\widget\TimerSlideController.class
 com\focusdesk\dao\PomodoroDAO.class
 com\focusdesk\model\Note.class
 com\focusdesk\util\TaskRunner$1.class
 com\focusdesk\controller\widget\MusicSlideController.class
 com\focusdesk\service\AuthService.class
+com\focusdesk\service\PomodoroService$1.class
 com\focusdesk\dao\TaskDAO.class
 com\focusdesk\app\Main.class
 com\focusdesk\dao\UserDAO.class
@@ -24,13 +24,11 @@ com\focusdesk\model\Preference.class
 com\focusdesk\controller\widget\CalendarSlideController.class
 com\focusdesk\dao\PomodoroSessionDAO.class
 com\focusdesk\app\App.class
-com\focusdesk\service\PomodoroService.class
 com\focusdesk\controller\LoginController.class
 com\focusdesk\dao\DatabaseManager.class
 com\focusdesk\dao\TaskNoteLinkDAO.class
 com\focusdesk\model\User.class
 com\focusdesk\app\Session.class
-com\focusdesk\controller\widget\WidgetController$SlideDef.class
 com\focusdesk\util\HttpUtil.class
 com\focusdesk\dao\NoteDAO.class
 com\focusdesk\dao\PreferenceDAO.class
