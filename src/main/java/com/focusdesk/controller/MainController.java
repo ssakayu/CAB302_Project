@@ -48,6 +48,7 @@ public class MainController {
         if (!(selected instanceof ToggleButton tb)) return;
 
         switch (tb.getText()) {
+            case "Tasks"  -> loadPage("tasks_page");
             case "Notes"  -> loadPage("notes_page");
             default       -> contentArea.getChildren().clear();
         }
@@ -61,6 +62,10 @@ public class MainController {
             contentArea.getChildren().setAll(page);
         } catch (Exception e) {
             e.printStackTrace();
+            javafx.scene.control.Label err = new javafx.scene.control.Label(
+                    "Failed to load page: " + e.getMessage());
+            err.setStyle("-fx-text-fill: red; -fx-font-size: 13px; -fx-padding: 20;");
+            contentArea.getChildren().setAll(err);
         }
     }
 

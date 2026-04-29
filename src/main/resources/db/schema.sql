@@ -20,8 +20,12 @@ CREATE TABLE IF NOT EXISTS preferences (
                                            widget_x REAL DEFAULT 100,
                                            widget_y REAL DEFAULT 100,
                                            widget_opacity REAL DEFAULT 1.0,
+                                           task_filter TEXT DEFAULT 'All Priorities:All Tasks',
                                            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
+
+-- Migration: add task_filter to existing databases (safe to re-run; duplicate column error is swallowed by DatabaseManager)
+ALTER TABLE preferences ADD COLUMN task_filter TEXT DEFAULT 'All Priorities:All Tasks';
 
 -- TASKS
 CREATE TABLE IF NOT EXISTS tasks (

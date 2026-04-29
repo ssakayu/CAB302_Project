@@ -30,7 +30,7 @@
 
             <!-- FEATURES -->
             <Label text="FEATURES" styleClass="nav-section-label" />
-            <ToggleButton text="To-do List" styleClass="nav-item"
+            <ToggleButton text="Tasks" styleClass="nav-item"
                 toggleGroup="$navGroup"
                 maxWidth="Infinity" onAction="#onNavSelect" />
             <ToggleButton text="Notes" styleClass="nav-item"
