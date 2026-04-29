@@ -36,6 +36,8 @@ public class MainController {
             stage.setHeight(620);
             stage.centerOnScreen();
         });
+
+        loadPage("dashboard_page");
     }
 
     // -------------------------------------------------------------------------
@@ -48,6 +50,7 @@ public class MainController {
         if (!(selected instanceof ToggleButton tb)) return;
 
         switch (tb.getText()) {
+            case "Dashboard" -> loadPage("dashboard_page");
             case "Notes"  -> loadPage("notes_page");
             default       -> contentArea.getChildren().clear();
         }

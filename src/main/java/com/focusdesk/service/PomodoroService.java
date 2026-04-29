@@ -15,24 +15,31 @@ import javafx.beans.property.StringProperty;
  */
 public class PomodoroService {
 
+    private static final int DEFAULT_FOCUS_MINUTES = 25;
+    private static final int DEFAULT_SHORT_BREAK_MINUTES = 5;
+    private static final int DEFAULT_LONG_BREAK_MINUTES = 15;
+    private static final int DEFAULT_CYCLES_BEFORE_LONG_BREAK = 4;
+
     private final PomodoroDAO pomodoroDAO = new PomodoroDAO();
     private final PreferenceDAO preferenceDAO = new PreferenceDAO();
 
     // User preferences (in seconds)
-    private int focusSeconds = 25 * 60;
-    private int shortBreakSeconds = 5 * 60;
-    private int longBreakSeconds = 15 * 60;
-    private int cyclesBeforeLongBreak = 4;
+    private int focusSeconds = DEFAULT_FOCUS_MINUTES * 60;
+    private int shortBreakSeconds = DEFAULT_SHORT_BREAK_MINUTES * 60;
+    private int longBreakSeconds = DEFAULT_LONG_BREAK_MINUTES * 60;
+    private int cyclesBeforeLongBreak = DEFAULT_CYCLES_BEFORE_LONG_BREAK;
 
     // Timer state
-    private IntegerProperty secondsRemaining = new SimpleIntegerProperty(focusSeconds);
+    private final IntegerProperty secondsRemaining = new SimpleIntegerProperty(focusSeconds);
     private StringProperty phaseLabel = new SimpleStringProperty("Focus 🎯");
     private StringProperty buttonLabel = new SimpleStringProperty("Start");
+    private final StringProperty sessionLabel = new SimpleStringProperty("Session 1 of 4");
 
     private boolean isFocusPhase = true;
     private boolean isRunning = false;
     private AnimationTimer animationTimer;
-    private int completedCycles = 0;
+    private int completedFocusSessions = 0;
+    private long lastUpdate = 0;
 
     // Callback for when phase changes
     private Runnable onPhaseComplete;
@@ -58,6 +65,7 @@ public class PomodoroService {
             e.printStackTrace();
         }
         secondsRemaining.set(focusSeconds);
+        updateSessionLabel();
     }
 
     /**
@@ -65,8 +73,6 @@ public class PomodoroService {
      */
     private void setupTimer() {
         animationTimer = new AnimationTimer() {
-            private long lastUpdate = 0;
-
             @Override
             public void handle(long now) {
                 if (!isRunning) return;
@@ -96,6 +102,7 @@ public class PomodoroService {
     private void onTimerComplete() {
         isRunning = false;
         buttonLabel.set("Start");
+        lastUpdate = 0;
 
         if (isFocusPhase) {
             // Log completed focus session
@@ -106,21 +113,26 @@ public class PomodoroService {
                 e.printStackTrace();
             }
 
-            completedCycles++;
+            completedFocusSessions++;
 
             // Decide break type
-            boolean isLongBreak = (completedCycles % cyclesBeforeLongBreak) == 0;
+            boolean isLongBreak = (completedFocusSessions % cyclesBeforeLongBreak) == 0;
             int breakDuration = isLongBreak ? longBreakSeconds : shortBreakSeconds;
 
             // Switch to break phase
             isFocusPhase = false;
             phaseLabel.set(isLongBreak ? "Long Break ☕" : "Short Break ☕");
             secondsRemaining.set(breakDuration);
+            updateSessionLabel();
         } else {
             // Switch back to focus phase
             isFocusPhase = true;
             phaseLabel.set("Focus 🎯");
             secondsRemaining.set(focusSeconds);
+            if (completedFocusSessions >= cyclesBeforeLongBreak) {
+                completedFocusSessions = 0;
+            }
+            updateSessionLabel();
         }
 
         if (onPhaseComplete != null) {
@@ -136,25 +148,30 @@ public class PomodoroService {
         isRunning = !isRunning;
         buttonLabel.set(isRunning ? "Pause" : "Start");
         if (isRunning) {
+            lastUpdate = 0;
             animationTimer.start();
         } else {
             animationTimer.stop();
+            lastUpdate = 0;
         }
     }
 
     public void reset() {
         isRunning = false;
         animationTimer.stop();
+        lastUpdate = 0;
         buttonLabel.set("Start");
         isFocusPhase = true;
         phaseLabel.set("Focus 🎯");
-        completedCycles = 0;
+        completedFocusSessions = 0;
         secondsRemaining.set(focusSeconds);
+        updateSessionLabel();
     }
 
     public void skipPhase() {
         isRunning = false;
         animationTimer.stop();
+        lastUpdate = 0;
         secondsRemaining.set(0);
         onTimerComplete();
     }
@@ -165,6 +182,11 @@ public class PomodoroService {
         this.longBreakSeconds = longBreakMin * 60;
         this.cyclesBeforeLongBreak = cycles;
         reset();
+    }
+
+    private void updateSessionLabel() {
+        int sessionNumber = isFocusPhase ? completedFocusSessions + 1 : Math.max(1, completedFocusSessions);
+        sessionLabel.set("Session " + sessionNumber + " of " + cyclesBeforeLongBreak);
     }
 
     // -------------------------------------------------------------------------
@@ -181,6 +203,10 @@ public class PomodoroService {
 
     public StringProperty buttonLabelProperty() {
         return buttonLabel;
+    }
+
+    public StringProperty sessionLabelProperty() {
+        return sessionLabel;
     }
 
     public boolean isRunning() {
@@ -201,6 +227,13 @@ public class PomodoroService {
 
     public int getCyclesBeforeLongBreak() {
         return cyclesBeforeLongBreak;
+    }
+
+    public int getCurrentPhaseTotalSeconds() {
+        if (isFocusPhase) {
+            return focusSeconds;
+        }
+        return (completedFocusSessions % cyclesBeforeLongBreak == 0) ? longBreakSeconds : shortBreakSeconds;
     }
 
     public void setOnPhaseComplete(Runnable callback) {

@@ -18,6 +18,9 @@
     <Label fx:id="phaseLabel" text="Focus 🎯"
            style="-fx-text-fill: #8ca4cc; -fx-font-size: 12; -fx-font-weight: bold; -fx-alignment: center;"/>
 
+    <Label fx:id="sessionLabel" text="Session 1 of 4"
+            style="-fx-text-fill: #f0f4ff; -fx-font-size: 11; -fx-alignment: center;"/>
+
     <!-- Timer Display (Circle with progress ring) -->
     <StackPane fx:id="timerContainer"
                VBox.vgrow="ALWAYS"

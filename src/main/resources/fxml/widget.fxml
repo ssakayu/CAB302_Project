@@ -32,11 +32,7 @@
             </VBox>
 
             <!-- Slide 1: Pomodoro Timer -->
-            <VBox spacing="4" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
-                <Label text="FOCUS" styleClass="timer-label"/>
-                <Label text="25:00" styleClass="timer-display"/>
-                <Label text="Session 1 of 4" styleClass="timer-label"/>
-            </VBox>
+            <fx:include source="timer_slide.fxml"/>
 
             <!-- Slide 2: Notes — quick-write; view in main window -->
             <VBox spacing="8" maxWidth="Infinity" maxHeight="Infinity"

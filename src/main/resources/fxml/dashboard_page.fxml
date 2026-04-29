@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="12"
+      styleClass="dashboard-page">
+
+    <padding>
+        <Insets top="18" right="20" bottom="18" left="20"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Dashboard" styleClass="dashboard-title"/>
+        <Label text="Study flow: 25 focus / 5 break / 4 sessions" styleClass="dashboard-subtitle"/>
+    </HBox>
+
+    <GridPane hgap="12" vgap="12" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="52" hgrow="ALWAYS"/>
+            <ColumnConstraints percentWidth="48" hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints percentHeight="54" vgrow="ALWAYS"/>
+            <RowConstraints percentHeight="46" vgrow="ALWAYS"/>
+        </rowConstraints>
+
+        <VBox spacing="10" styleClass="dashboard-card" GridPane.columnIndex="0" GridPane.rowIndex="0" maxWidth="Infinity" maxHeight="Infinity">
+            <Label text="Pomodoro Timer" styleClass="dashboard-card-title"/>
+            <fx:include source="timer_dashboard.fxml"/>
+        </VBox>
+
+        <VBox spacing="8" styleClass="dashboard-card" GridPane.columnIndex="1" GridPane.rowIndex="0" maxWidth="Infinity" maxHeight="Infinity">
+            <Label text="Today" styleClass="dashboard-card-title"/>
+            <Label text="Use the timer card to start your first focus session." styleClass="dashboard-card-text" wrapText="true"/>
+            <Label text="After each 25-minute focus, take a 5-minute break." styleClass="dashboard-card-text" wrapText="true"/>
+            <Label text="After session 4, take your long break." styleClass="dashboard-card-text" wrapText="true"/>
+        </VBox>
+
+        <VBox spacing="8" styleClass="dashboard-card" GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="Infinity" maxHeight="Infinity">
+            <Label text="Tasks" styleClass="dashboard-card-title"/>
+            <Label text="Connect this with your task list to pick a task before each session." styleClass="dashboard-card-text" wrapText="true"/>
+        </VBox>
+
+        <VBox spacing="8" styleClass="dashboard-card" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" maxHeight="Infinity">
+            <Label text="Notes" styleClass="dashboard-card-title"/>
+            <Label text="Keep quick notes while studying and review after each cycle." styleClass="dashboard-card-text" wrapText="true"/>
+        </VBox>
+    </GridPane>
+
+</VBox>
