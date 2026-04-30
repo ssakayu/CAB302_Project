@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.focusdesk.controller.TasksController"
+      styleClass="tasks-page"
+      maxWidth="Infinity" maxHeight="Infinity"
+      stylesheets="@../css/tasks.css">
+
+    <!-- Top bar: heading | spacer | priority filter | status filter -->
+    <HBox styleClass="tasks-topbar" alignment="CENTER_LEFT">
+        <Label text="Tasks" styleClass="tasks-heading"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <ChoiceBox fx:id="filterPriority" styleClass="tasks-filter"/>
+        <ChoiceBox fx:id="filterStatus" styleClass="tasks-filter">
+            <HBox.margin><Insets left="8"/></HBox.margin>
+        </ChoiceBox>
+    </HBox>
+
+    <!-- Quick-add bar -->
+    <HBox styleClass="tasks-add-bar" alignment="CENTER_LEFT" spacing="8">
+        <TextField fx:id="newTaskField"
+                   promptText="Add a new task..."
+                   styleClass="task-input"
+                   onAction="#onAddTask"
+                   HBox.hgrow="ALWAYS"/>
+        <ChoiceBox fx:id="newTaskPriority" styleClass="tasks-filter"/>
+        <Button text="+ Add" styleClass="task-add-btn" onAction="#onAddTask"/>
+    </HBox>
+
+    <!-- Task list -->
+    <ListView fx:id="taskList" styleClass="task-list" VBox.vgrow="ALWAYS"/>
+
+</VBox>
