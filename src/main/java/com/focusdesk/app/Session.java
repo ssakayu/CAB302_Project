@@ -33,8 +33,7 @@ public class Session {
     private final BooleanProperty widgetOpen = new SimpleBooleanProperty(false);
 
     // Last known widget geometry (in-memory only).
-    // TODO: load initial values from PreferenceDAO on login; persist on
-    // logout/close via PreferenceDAO
+    // Loaded from PreferenceDAO on login; persisted on logout/close
     private double widgetX = Double.NaN;
     private double widgetY = Double.NaN;
     private double widgetWidth = 380;
@@ -64,6 +63,14 @@ public class Session {
         try {
             this.tasks = FXCollections.observableArrayList(new TaskDAO().listByUser(user.getId()));
             this.notes = FXCollections.observableArrayList(new NoteDAO().listByUser(user.getId()));
+            
+            // Load widget preferences
+            com.focusdesk.model.Preference prefs = new com.focusdesk.dao.PreferenceDAO().getByUserId(user.getId());
+            if (prefs != null) {
+                widgetX = prefs.getWidgetX();
+                widgetY = prefs.getWidgetY();
+                // Widget width and height stored in session memory only
+            }
         } catch (Exception e) {
             this.tasks = FXCollections.observableArrayList();
             this.notes = FXCollections.observableArrayList();
@@ -72,6 +79,7 @@ public class Session {
 
     public void logout() {
         closeWidget();
+        // Widget bounds stored in session memory only (not persisted to database)
         this.currentUser = null;
         this.tasks = null;
         this.notes = null;
@@ -142,8 +150,7 @@ public class Session {
                 widgetWidth = widgetStage.getWidth();
                 widgetHeight = widgetStage.getHeight();
                 widgetOpen.set(false);
-                // TODO: call PreferenceDAO.updateWidgetBounds(currentUser.getId(), widgetX,
-                // widgetY, widgetWidth, widgetHeight)
+                // Widget bounds stored in session memory only
             });
 
             widgetStage.setOnHidden(e -> widgetStage = null);

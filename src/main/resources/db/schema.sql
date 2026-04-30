@@ -20,8 +20,12 @@ CREATE TABLE IF NOT EXISTS preferences (
                                            widget_x REAL DEFAULT 100,
                                            widget_y REAL DEFAULT 100,
                                            widget_opacity REAL DEFAULT 1.0,
+                                           task_filter TEXT DEFAULT 'All Priorities:All Tasks',
                                            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
+
+-- Migration: add task_filter to existing databases (safe to re-run; duplicate column error is swallowed by DatabaseManager)
+ALTER TABLE preferences ADD COLUMN task_filter TEXT DEFAULT 'All Priorities:All Tasks';
 
 -- TASKS
 CREATE TABLE IF NOT EXISTS tasks (
@@ -59,6 +63,19 @@ CREATE TABLE IF NOT EXISTS pomodoro_sessions (
                                                  user_id INTEGER NOT NULL,
                                                  focus_minutes INTEGER NOT NULL,
                                                  completed_at TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+
+-- OAUTH TOKENS
+CREATE TABLE IF NOT EXISTS oauth_tokens (
+                                            user_id INTEGER NOT NULL,
+                                            provider TEXT NOT NULL,
+                                            access_token TEXT NOT NULL,
+                                            refresh_token TEXT,
+                                            token_type TEXT,
+                                            scope TEXT,
+                                            expires_at TEXT,
+                                            PRIMARY KEY (user_id, provider),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
 

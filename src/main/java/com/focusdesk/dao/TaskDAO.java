@@ -33,15 +33,7 @@ public class TaskDAO {
             ps.setInt(1, userId);
 
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    out.add(new Task(
-                            rs.getInt("id"),
-                            rs.getInt("user_id"),
-                            rs.getString("title"),
-                            rs.getInt("is_done") == 1,
-                            rs.getString("priority")
-                    ));
-                }
+                while (rs.next()) out.add(fromRow(rs));
             }
         }
         return out;
@@ -55,5 +47,74 @@ public class TaskDAO {
             ps.setInt(2, taskId);
             ps.executeUpdate();
         }
+    }
+
+    public void update(int taskId, String newTitle) throws Exception {
+        String sql = "UPDATE tasks SET title = ? WHERE id = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, newTitle);
+            ps.setInt(2, taskId);
+            ps.executeUpdate();
+        }
+    }
+
+    public void delete(int taskId) throws Exception {
+        String sql = "DELETE FROM tasks WHERE id = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, taskId);
+            ps.executeUpdate();
+        }
+    }
+
+    public void setPriority(int taskId, String priority) throws Exception {
+        String sql = "UPDATE tasks SET priority = ? WHERE id = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, priority);
+            ps.setInt(2, taskId);
+            ps.executeUpdate();
+        }
+    }
+
+    public List<Task> listByPriority(int userId, String priority) throws Exception {
+        String sql = "SELECT id, user_id, title, is_done, priority FROM tasks " +
+                     "WHERE user_id = ? AND priority = ? ORDER BY id DESC";
+        List<Task> out = new ArrayList<>();
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.setString(2, priority);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) out.add(fromRow(rs));
+            }
+        }
+        return out;
+    }
+
+    public List<Task> listByDone(int userId, boolean done) throws Exception {
+        String sql = "SELECT id, user_id, title, is_done, priority FROM tasks " +
+                     "WHERE user_id = ? AND is_done = ? ORDER BY id DESC";
+        List<Task> out = new ArrayList<>();
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.setInt(2, done ? 1 : 0);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) out.add(fromRow(rs));
+            }
+        }
+        return out;
+    }
+
+    private Task fromRow(ResultSet rs) throws SQLException {
+        return new Task(
+                rs.getInt("id"),
+                rs.getInt("user_id"),
+                rs.getString("title"),
+                rs.getInt("is_done") == 1,
+                rs.getString("priority")
+        );
     }
 }

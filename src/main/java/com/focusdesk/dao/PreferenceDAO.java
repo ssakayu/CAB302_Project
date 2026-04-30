@@ -76,4 +76,27 @@ public class PreferenceDAO {
             ps.executeUpdate();
         }
     }
+
+    public String getTaskFilter(int userId) throws Exception {
+        String sql = "SELECT task_filter FROM preferences WHERE user_id = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getString("task_filter");
+            }
+        }
+        return null;
+    }
+
+    public void saveTaskFilter(int userId, String filter) throws Exception {
+        ensureDefaultRow(userId);
+        String sql = "UPDATE preferences SET task_filter = ? WHERE user_id = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, filter);
+            ps.setInt(2, userId);
+            ps.executeUpdate();
+        }
+    }
 }
