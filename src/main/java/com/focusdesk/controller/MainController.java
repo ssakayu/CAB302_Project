@@ -15,18 +15,21 @@ import javafx.stage.Stage;
 
 public class MainController {
 
-    @FXML private Button widgetToggleButton;
-    @FXML private ToggleGroup navGroup;
-    @FXML private StackPane contentArea;
+    @FXML
+    private Button widgetToggleButton;
+    @FXML
+    private ToggleGroup navGroup;
+    @FXML
+    private StackPane contentArea;
 
     @FXML
     private void initialize() {
         Session.get().widgetOpenProperty().addListener(
-                (obs, wasOpen, isOpen) ->
-                        widgetToggleButton.setText(isOpen ? "Close Widget" : "Launch Widget"));
+                (obs, wasOpen, isOpen) -> widgetToggleButton.setText(isOpen ? "Close Widget" : "Launch Widget"));
 
         navGroup.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal == null) oldVal.setSelected(true);
+            if (newVal == null)
+                oldVal.setSelected(true);
         });
 
         Platform.runLater(() -> {
@@ -45,16 +48,14 @@ public class MainController {
     @FXML
     private void onNavSelect() {
         Toggle selected = navGroup.getSelectedToggle();
-        if (!(selected instanceof ToggleButton tb)) return;
+        if (!(selected instanceof ToggleButton tb))
+            return;
 
         switch (tb.getText()) {
-<<<<<<< HEAD
-            case "Tasks"  -> loadPage("tasks_page");
-=======
+            case "Tasks" -> loadPage("tasks_page");
             case "Calendar" -> loadPage("calendar_slide");
->>>>>>> ef9baf706ceae48259b2a1029370615ddce51340
-            case "Notes"  -> loadPage("notes_page");
-            default       -> contentArea.getChildren().clear();
+            case "Notes" -> loadPage("notes_page");
+            default -> contentArea.getChildren().clear();
         }
     }
 
@@ -80,8 +81,10 @@ public class MainController {
     @FXML
     private void toggleWidget() {
         Session session = Session.get();
-        if (session.isWidgetOpen()) session.closeWidget();
-        else                        session.openWidget();
+        if (session.isWidgetOpen())
+            session.closeWidget();
+        else
+            session.openWidget();
     }
 
     // -------------------------------------------------------------------------
