@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -18,6 +19,7 @@ public class App extends Application {
 
         scene = new Scene(loadFXML("login"), 420, 520);
         stage.setTitle("FocusDesk - Auth");
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("/images/logo.png")));
         stage.setScene(scene);
         stage.show();
     }

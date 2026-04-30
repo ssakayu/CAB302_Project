@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -109,6 +110,7 @@ public class Session {
             Scene scene = new Scene(loader.load());
 
             widgetStage = new Stage();
+            widgetStage.getIcons().add(new Image(App.class.getResourceAsStream("/images/logo.png")));
             widgetStage.initStyle(StageStyle.UNDECORATED);
             widgetStage.initOwner(mainStage); // keeps it off the taskbar
             widgetStage.setAlwaysOnTop(true);
