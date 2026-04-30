@@ -1,3 +1,11 @@
 package com.focusdesk.model;
 
-public class OAuthToken {}
+public record OAuthToken(
+        int userId,
+        String provider,
+        String accessToken,
+        String refreshToken,
+        String tokenType,
+        String scope,
+        String expiresAt
+) {}
