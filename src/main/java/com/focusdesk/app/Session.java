@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -33,7 +34,8 @@ public class Session {
     private final BooleanProperty widgetOpen = new SimpleBooleanProperty(false);
 
     // Last known widget geometry (in-memory only).
-    // Loaded from PreferenceDAO on login; persisted on logout/close
+    // TODO: load initial values from PreferenceDAO on login; persist on
+    // logout/close via PreferenceDAO
     private double widgetX = Double.NaN;
     private double widgetY = Double.NaN;
     private double widgetWidth = 380;
@@ -63,14 +65,6 @@ public class Session {
         try {
             this.tasks = FXCollections.observableArrayList(new TaskDAO().listByUser(user.getId()));
             this.notes = FXCollections.observableArrayList(new NoteDAO().listByUser(user.getId()));
-            
-            // Load widget preferences
-            com.focusdesk.model.Preference prefs = new com.focusdesk.dao.PreferenceDAO().getByUserId(user.getId());
-            if (prefs != null) {
-                widgetX = prefs.getWidgetX();
-                widgetY = prefs.getWidgetY();
-                // Widget width and height stored in session memory only
-            }
         } catch (Exception e) {
             this.tasks = FXCollections.observableArrayList();
             this.notes = FXCollections.observableArrayList();
@@ -79,7 +73,6 @@ public class Session {
 
     public void logout() {
         closeWidget();
-        // Widget bounds stored in session memory only (not persisted to database)
         this.currentUser = null;
         this.tasks = null;
         this.notes = null;
@@ -117,6 +110,7 @@ public class Session {
             Scene scene = new Scene(loader.load());
 
             widgetStage = new Stage();
+            widgetStage.getIcons().add(new Image(App.class.getResourceAsStream("/images/logo.png")));
             widgetStage.initStyle(StageStyle.UNDECORATED);
             widgetStage.initOwner(mainStage); // keeps it off the taskbar
             widgetStage.setAlwaysOnTop(true);
@@ -150,7 +144,8 @@ public class Session {
                 widgetWidth = widgetStage.getWidth();
                 widgetHeight = widgetStage.getHeight();
                 widgetOpen.set(false);
-                // Widget bounds stored in session memory only
+                // TODO: call PreferenceDAO.updateWidgetBounds(currentUser.getId(), widgetX,
+                // widgetY, widgetWidth, widgetHeight)
             });
 
             widgetStage.setOnHidden(e -> widgetStage = null);
