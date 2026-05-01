@@ -57,7 +57,7 @@ public class TimerSettingsController {
             int cycles = cyclesSpinner.getValue();
 
             // Update preferences in database
-            preferenceDAO.updateTimerPreferences(userId, focusMin, breakMin, longBreakMin);
+            preferenceDAO.updateTimerDurations(userId, focusMin, breakMin, longBreakMin);
 
             // Notify timer controller of changes
             if (timerController != null) {

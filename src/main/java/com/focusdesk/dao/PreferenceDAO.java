@@ -62,7 +62,7 @@ public class PreferenceDAO {
         }
     }
 
-    public void updateTimerPreferences(int userId, int focusMinutes, int shortBreakMinutes, int longBreakMinutes) throws Exception {
+    public void updateTimerDurations(int userId, int focusMinutes, int shortBreakMinutes, int longBreakMinutes) throws Exception {
         String sql = """
             UPDATE preferences 
             SET focus_minutes = ?, short_break_minutes = ?, long_break_minutes = ? 
