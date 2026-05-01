@@ -1,0 +1,84 @@
+.profile-page {
+    -fx-background-color: white;
+}
+
+.profile-heading {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+}
+
+.profile-subheading {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 13px;
+}
+
+.profile-card {
+    -fx-background-color: #fafafa;
+    -fx-background-radius: 10;
+    -fx-border-color: #e5e7eb;
+    -fx-border-radius: 10;
+    -fx-padding: 16 20 18 20;
+}
+
+.profile-card-section {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #9ca3af;
+    -fx-padding: 0 0 4 0;
+}
+
+.profile-row {
+    -fx-padding: 4 0;
+}
+
+.profile-row-label {
+    -fx-text-fill: #4b5563;
+    -fx-font-size: 13px;
+}
+
+.profile-row-value {
+    -fx-text-fill: #111827;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.stat-tile {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: #e5e7eb;
+    -fx-border-radius: 8;
+    -fx-padding: 14 16 12 16;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.stat-number {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a73e8;
+}
+.stat-number-done    { -fx-text-fill: #16a34a; }
+.stat-number-pending { -fx-text-fill: #f59e0b; }
+.stat-number-notes   { -fx-text-fill: #8b5cf6; }
+
+.stat-label {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 11px;
+    -fx-padding: 2 0 0 0;
+}
+
+.profile-logout-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #c62828;
+    -fx-border-color: #c62828;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 18;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.profile-logout-btn:hover {
+    -fx-background-color: #c62828;
+    -fx-text-fill: white;
+}

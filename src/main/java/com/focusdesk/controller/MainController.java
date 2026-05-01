@@ -55,6 +55,7 @@ public class MainController {
             case "Tasks" -> loadPage("tasks_page");
             case "Calendar" -> loadPage("calendar_slide");
             case "Notes" -> loadPage("notes_page");
+            case "Profile" -> loadPage("profile_page");
             default -> contentArea.getChildren().clear();
         }
     }

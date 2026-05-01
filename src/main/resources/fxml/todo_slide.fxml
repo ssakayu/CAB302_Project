@@ -1,3 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx" />
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.focusdesk.controller.widget.TodoSlideController"
+           styleClass="widget-todo-slide"
+           maxWidth="Infinity" maxHeight="Infinity">
+
+    <ListView fx:id="miniTaskList"
+              styleClass="widget-todo-list"
+              maxWidth="Infinity" maxHeight="Infinity"/>
+
+    <VBox alignment="CENTER" StackPane.alignment="CENTER">
+        <Label fx:id="emptyHint"
+               text="No tasks yet — add one in Tasks page"
+               styleClass="widget-todo-empty"
+               wrapText="true"
+               visible="false" managed="false"/>
+    </VBox>
+</StackPane>

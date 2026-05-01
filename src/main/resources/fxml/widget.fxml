@@ -23,13 +23,7 @@
     <center>
         <StackPane fx:id="slideContainer" styleClass="slide-container">
 
-            <!-- Slide 0: To-Do -->
-            <VBox spacing="7" maxWidth="Infinity" maxHeight="Infinity" StackPane.alignment="TOP_LEFT">
-                <Label text="☐  Design wireframes" styleClass="todo-item"/>
-                <Label text="☑  Fix login bug" styleClass="todo-item todo-done"/>
-                <Label text="☐  Write unit tests" styleClass="todo-item"/>
-                <Label text="☐  Update README" styleClass="todo-item"/>
-            </VBox>
+            <fx:include source="todo_slide.fxml"/>
 
             <!-- Slide 1: Pomodoro Timer -->
             <VBox spacing="4" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">

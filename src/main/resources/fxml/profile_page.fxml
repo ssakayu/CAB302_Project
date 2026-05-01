@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.focusdesk.controller.ProfileController"
+      styleClass="profile-page"
+      stylesheets="@../css/profile.css"
+      spacing="20">
+
+    <padding><Insets top="32" right="32" bottom="32" left="32"/></padding>
+
+    <VBox spacing="4">
+        <Label text="Profile" styleClass="profile-heading"/>
+        <Label text="Your account at a glance." styleClass="profile-subheading"/>
+    </VBox>
+
+    <VBox spacing="12" styleClass="profile-card">
+        <Label text="ACCOUNT" styleClass="profile-card-section"/>
+
+        <HBox styleClass="profile-row">
+            <Label text="Username" styleClass="profile-row-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="usernameLabel" text="—" styleClass="profile-row-value"/>
+        </HBox>
+
+        <HBox styleClass="profile-row">
+            <Label text="Email" styleClass="profile-row-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="emailLabel" text="—" styleClass="profile-row-value"/>
+        </HBox>
+
+        <HBox styleClass="profile-row">
+            <Label text="User ID" styleClass="profile-row-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userIdLabel" text="—" styleClass="profile-row-value"/>
+        </HBox>
+    </VBox>
+
+    <VBox spacing="12" styleClass="profile-card">
+        <Label text="ACTIVITY" styleClass="profile-card-section"/>
+
+        <HBox spacing="12">
+            <VBox styleClass="stat-tile" HBox.hgrow="ALWAYS">
+                <Label fx:id="totalTasksLabel" text="0" styleClass="stat-number"/>
+                <Label text="Total tasks" styleClass="stat-label"/>
+            </VBox>
+            <VBox styleClass="stat-tile" HBox.hgrow="ALWAYS">
+                <Label fx:id="doneTasksLabel" text="0" styleClass="stat-number,stat-number-done"/>
+                <Label text="Done" styleClass="stat-label"/>
+            </VBox>
+            <VBox styleClass="stat-tile" HBox.hgrow="ALWAYS">
+                <Label fx:id="pendingTasksLabel" text="0" styleClass="stat-number,stat-number-pending"/>
+                <Label text="Pending" styleClass="stat-label"/>
+            </VBox>
+            <VBox styleClass="stat-tile" HBox.hgrow="ALWAYS">
+                <Label fx:id="notesCountLabel" text="0" styleClass="stat-number,stat-number-notes"/>
+                <Label text="Notes" styleClass="stat-label"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <HBox alignment="CENTER_LEFT">
+        <Button text="Log out" styleClass="profile-logout-btn" onAction="#onLogout"/>
+    </HBox>
+
+</VBox>
