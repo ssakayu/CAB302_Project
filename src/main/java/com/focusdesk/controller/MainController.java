@@ -38,6 +38,7 @@ public class MainController {
             stage.setWidth(1280);
             stage.setHeight(760);
             stage.centerOnScreen();
+            loadPage("dashboard_page");
         });
     }
 
@@ -52,6 +53,7 @@ public class MainController {
             return;
 
         switch (tb.getText()) {
+            case "Dashboard" -> loadPage("dashboard_page");
             case "Tasks" -> loadPage("tasks_page");
             case "Calendar" -> loadPage("calendar_slide");
             case "Notes" -> loadPage("notes_page");

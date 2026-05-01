@@ -1,3 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx" />
+<?import javafx.scene.shape.Circle?>
+
+<VBox xmlns="http://javafx.com/javafx"
+	  xmlns:fx="http://javafx.com/fxml"
+	  fx:controller="com.focusdesk.controller.widget.TimerSlideController"
+	  fx:id="timerRoot"
+	  spacing="10"
+	  alignment="CENTER"
+	  maxWidth="Infinity"
+	  maxHeight="Infinity"
+	  styleClass="pomodoro-slide">
+
+	<padding>
+		<Insets top="4" right="10" bottom="0" left="10" />
+	</padding>
+
+	<VBox spacing="2" alignment="CENTER">
+		<Label fx:id="phaseLabel" text="Focus" styleClass="pomodoro-phase-title" />
+		<Label fx:id="sessionLabel" text="Session 1 of 4" styleClass="pomodoro-session-label" />
+	</VBox>
+
+	<StackPane VBox.vgrow="ALWAYS" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+		<Circle fx:id="timerRing" radius="72" styleClass="pomodoro-ring" />
+		<Label fx:id="timerLabel" text="25:00" styleClass="pomodoro-timer-display" />
+	</StackPane>
+
+	<HBox spacing="6" alignment="CENTER" styleClass="pomodoro-controls">
+		<Button fx:id="startPauseButton" text="Start" onAction="#onStartPause" styleClass="timer-action-btn timer-primary-btn" />
+		<Button fx:id="resetButton" text="Reset" onAction="#onReset" styleClass="timer-action-btn" />
+		<Button fx:id="skipButton" text="Skip" onAction="#onSkip" styleClass="timer-action-btn" />
+		<Button fx:id="settingsButton" text="⚙" onAction="#onOpenSettings" styleClass="timer-settings-btn" />
+	</HBox>
+</VBox>

@@ -1,0 +1,57 @@
+.dashboard-page {
+    -fx-background-color: #f4f6fa;
+}
+
+.dashboard-title {
+    -fx-font-size: 42px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1f2d43;
+}
+
+.dashboard-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #74829b;
+}
+
+.dashboard-card {
+    -fx-background-color: #fbfcff;
+    -fx-background-radius: 14;
+    -fx-border-color: #e2e7f0;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 12;
+    -fx-spacing: 10;
+}
+
+.dashboard-card-header {
+    -fx-padding: 0 0 4 0;
+}
+
+.dashboard-card-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #24344e;
+}
+
+.dashboard-timer-host {
+    -fx-background-color: #f6f8fc;
+    -fx-background-radius: 10;
+    -fx-border-color: #e4e9f2;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 8;
+}
+
+.dashboard-placeholder {
+    -fx-background-color: #f9fbff;
+    -fx-background-radius: 10;
+    -fx-border-color: #e7ebf4;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 12;
+}
+
+.dashboard-placeholder-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #74829b;
+}
