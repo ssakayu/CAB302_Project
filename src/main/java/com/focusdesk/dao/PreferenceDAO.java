@@ -62,6 +62,22 @@ public class PreferenceDAO {
         }
     }
 
+    public void updateTimerPreferences(int userId, int focusMinutes, int shortBreakMinutes, int longBreakMinutes) throws Exception {
+        String sql = """
+            UPDATE preferences 
+            SET focus_minutes = ?, short_break_minutes = ?, long_break_minutes = ? 
+            WHERE user_id = ?
+        """;
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, focusMinutes);
+            ps.setInt(2, shortBreakMinutes);
+            ps.setInt(3, longBreakMinutes);
+            ps.setInt(4, userId);
+            ps.executeUpdate();
+        }
+    }
+
     public String getTaskFilter(int userId) throws Exception {
         String sql = "SELECT task_filter FROM preferences WHERE user_id = ?";
         try (Connection conn = DatabaseManager.getConnection();

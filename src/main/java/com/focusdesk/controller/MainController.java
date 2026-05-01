@@ -40,6 +40,8 @@ public class MainController {
             stage.centerOnScreen();
             loadPage("dashboard_page");
         });
+
+        loadPage("dashboard_page");
     }
 
     // -------------------------------------------------------------------------

@@ -1,36 +1,39 @@
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/app/App.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/app/Main.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/app/PomodoroTest.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/app/Session.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/LoginController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/MainController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/NotesController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/SignupController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/widget/CalendarSlideController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/widget/MusicSlideController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/widget/NotesSlideController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/widget/TimerSlideController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/widget/TodoSlideController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/controller/widget/WidgetController.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/dao/DatabaseManager.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/dao/NoteDAO.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/dao/OAuthTokenDAO.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/dao/PomodoroDAO.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/dao/PomodoroSessionDAO.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/dao/PreferenceDAO.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/dao/TaskDAO.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/dao/TaskNoteLinkDAO.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/dao/UserDAO.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/model/Note.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/model/OAuthToken.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/model/PomodoroSession.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/model/Preference.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/model/Task.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/model/User.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/service/AuthService.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/service/GoogleCalendarService.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/service/OAuthCallbackServer.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/service/PomodoroService.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/service/SpotifyService.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/util/HttpUtil.java
-/Users/kawinpobpanbapeaw/Desktop/302_project/src/main/java/com/focusdesk/util/TaskRunner.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\app\App.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\app\Main.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\app\PomodoroTest.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\app\Session.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\LoginController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\MainController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\NotesController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\SignupController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\TasksController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\widget\CalendarSlideController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\widget\MusicSlideController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\widget\NotesSlideController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\widget\TimerSettingsController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\widget\TimerSlideController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\widget\TodoSlideController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\widget\WidgetController.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\controller\widget\WidgetWindowManager.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\dao\DatabaseManager.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\dao\NoteDAO.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\dao\OAuthTokenDAO.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\dao\PomodoroDAO.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\dao\PomodoroSessionDAO.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\dao\PreferenceDAO.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\dao\TaskDAO.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\dao\TaskNoteLinkDAO.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\dao\UserDAO.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\model\Note.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\model\OAuthToken.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\model\PomodoroSession.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\model\Preference.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\model\Task.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\model\User.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\service\AuthService.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\service\GoogleCalendarService.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\service\OAuthCallbackServer.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\service\PomodoroService.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\service\SpotifyService.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\util\HttpUtil.java
+c:\Users\stanl\OneDrive\Documents\QUT\Yea3 (2026)\Cab302-Agile Software Engineering\CAB302_Project-1\src\main\java\com\focusdesk\util\TaskRunner.java

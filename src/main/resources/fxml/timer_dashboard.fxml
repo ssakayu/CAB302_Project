@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.focusdesk.controller.widget.TimerSlideController"
+      spacing="8"
+      styleClass="dashboard-timer-panel"
+      VBox.vgrow="ALWAYS">
+
+    <Label fx:id="phaseLabel" text="Focus"
+           styleClass="dashboard-timer-phase"/>
+
+    <Label fx:id="sessionLabel" text="Session 1 of 4"
+           styleClass="dashboard-timer-session"/>
+
+    <StackPane fx:id="timerContainer"
+               VBox.vgrow="ALWAYS"
+               styleClass="dashboard-timer-display-container">
+        <Label fx:id="timeLabel" text="25:00"
+               styleClass="dashboard-timer-time"/>
+    </StackPane>
+
+    <HBox spacing="8" styleClass="dashboard-timer-actions">
+        <Button fx:id="startPauseBtn" text="Start"
+                styleClass="dashboard-timer-btn dashboard-timer-btn-start"
+                onAction="#onStartPause"/>
+        <Button fx:id="resetBtn" text="Reset"
+                styleClass="dashboard-timer-btn dashboard-timer-btn-reset"
+                onAction="#onReset"/>
+        <Button fx:id="skipBtn" text="Skip"
+                styleClass="dashboard-timer-btn dashboard-timer-btn-skip"
+                onAction="#onSkip"/>
+        <Button fx:id="settingsBtn" text="⚙"
+                styleClass="dashboard-timer-btn dashboard-timer-btn-settings"
+                onAction="#onSettings"/>
+    </HBox>
+
+</VBox>

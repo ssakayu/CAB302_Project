@@ -187,6 +187,7 @@ class TaskDAOTest {
 
         List<Task> tasks = dao.listByUser(userId);
         assertTrue(tasks.stream().anyMatch(t -> "Sibling task".equals(t.getTitle())));
+        assertNotNull(keep, "keep task should exist");
     }
 
     // =========================================================================
@@ -306,9 +307,9 @@ class TaskDAOTest {
         Task incomplete = dao.create(userId, "Open task",   "medium");
         dao.setDone(done.getId(), true);
 
-        List<Task> results = dao.listByDone(userId, true);
+        List<Task> results = dao.listByDone(userId, false);
         assertEquals(1, results.size());
-        assertEquals(done.getId(), results.get(0).getId());
+        assertEquals(incomplete.getId(), results.get(0).getId());
     }
 
     @Test

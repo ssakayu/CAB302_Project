@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.focusdesk.controller.widget.TimerSettingsController"
+      spacing="16"
+      style="-fx-padding: 20; -fx-background-color: #1b1f27;">
+
+    <Label text="Pomodoro Settings"
+           style="-fx-text-fill: #f0f4ff; -fx-font-size: 16; -fx-font-weight: bold;"/>
+
+    <HBox spacing="12" style="-fx-alignment: CENTER_LEFT;">
+        <Label text="Focus Duration (min):" style="-fx-text-fill: #8ca4cc; -fx-font-size: 12;"/>
+        <Spinner fx:id="focusSpinner" prefWidth="120"/>
+    </HBox>
+
+    <HBox spacing="12" style="-fx-alignment: CENTER_LEFT;">
+        <Label text="Short Break (min):" style="-fx-text-fill: #8ca4cc; -fx-font-size: 12;"/>
+        <Spinner fx:id="breakSpinner" prefWidth="120"/>
+    </HBox>
+
+    <HBox spacing="12" style="-fx-alignment: CENTER_LEFT;">
+        <Label text="Long Break (min):" style="-fx-text-fill: #8ca4cc; -fx-font-size: 12;"/>
+        <Spinner fx:id="longBreakSpinner" prefWidth="120"/>
+    </HBox>
+
+    <HBox spacing="12" style="-fx-alignment: CENTER_LEFT;">
+        <Label text="Sessions Before Long Break:" style="-fx-text-fill: #8ca4cc; -fx-font-size: 12;"/>
+        <Spinner fx:id="cyclesSpinner" prefWidth="120"/>
+    </HBox>
+
+    <!-- Sound Notifications -->
+    <CheckBox fx:id="soundCheckbox" text="Enable sound notifications"
+              style="-fx-text-fill: #8ca4cc; -fx-font-size: 12;" selected="true"/>
+
+    <!-- Separator -->
+    <Label style="-fx-border-color: #2f3443; -fx-border-width: 1 0 0 0;"/>
+
+    <!-- Save & Cancel Buttons -->
+    <HBox spacing="8" style="-fx-alignment: center-right;">
+        <Button text="Cancel"
+                style="-fx-padding: 8 16 8 16; -fx-font-size: 12; -fx-background-color: #5a4a5a; -fx-text-fill: white; -fx-background-radius: 4;"
+                onAction="#onCancel"/>
+        <Button text="Save"
+                style="-fx-padding: 8 16 8 16; -fx-font-size: 12; -fx-background-color: #4a7c8c; -fx-text-fill: white; -fx-background-radius: 4;"
+                onAction="#onSave"/>
+    </HBox>
+
+</VBox>

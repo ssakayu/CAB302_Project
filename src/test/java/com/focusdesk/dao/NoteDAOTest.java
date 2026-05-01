@@ -168,6 +168,7 @@ class NoteDAOTest {
 
         List<Note> notes = dao.getAll(userId);
         assertTrue(notes.stream().anyMatch(n -> "Keep me".equals(n.getContent())));
+        assertNotNull(keep, "keep note should exist");
     }
 
     // =========================================================================
