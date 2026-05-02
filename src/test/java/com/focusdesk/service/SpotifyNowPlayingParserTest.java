@@ -40,43 +40,39 @@ class SpotifyNowPlayingParserTest {
     }
 
     @Test
+    void parse_returns_null_when_item_missing() {
+        JsonObject obj = JsonParser.parseString("{\"is_playing\":true}").getAsJsonObject();
+        assertNull(SpotifyNowPlayingParser.parse(obj));
+    }
+
+    // ✅ NEW TDD test (this should FAIL first = RED)
+    @Test
     void parse_picks_smallest_cover_image() {
         String json = """
-    {
-      "is_playing": true,
-      "progress_ms": 1000,
-      "item": {
-        "name": "Song",
-        "duration_ms": 200000,
-        "artists": [ { "name": "Artist" } ],
-        "album": {
-          "name": "Album",
-          "images": [
-            { "url": "https://example.com/large.jpg" },
-            { "url": "https://example.com/medium.jpg" },
-            { "url": "https://example.com/small.jpg" }
-          ]
+        {
+          "is_playing": true,
+          "progress_ms": 1000,
+          "item": {
+            "name": "Song",
+            "duration_ms": 200000,
+            "artists": [ { "name": "Artist" } ],
+            "album": {
+              "name": "Album",
+              "images": [
+                { "url": "https://example.com/large.jpg" },
+                { "url": "https://example.com/medium.jpg" },
+                { "url": "https://example.com/small.jpg" }
+              ]
+            }
+          }
         }
-      }
-    }
-    """;
+        """;
 
         JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
         SpotifyNowPlayingInfo info = SpotifyNowPlayingParser.parse(obj);
 
         assertNotNull(info);
-        // ✅ we want the smallest cover (last image)
+        // ✅ expect smallest cover (last image)
         assertEquals("https://example.com/small.jpg", info.coverUrl());
-
-        if (albumObj.has("images") && albumObj.getAsJsonArray("images").size() > 0) {
-            var images = albumObj.getAsJsonArray("images");
-            coverUrl = images.get(images.size() - 1).getAsJsonObject().get("url").getAsString();
-        }
-    }
-
-    @Test
-    void parse_returns_null_when_item_missing() {
-        JsonObject obj = JsonParser.parseString("{\"is_playing\":true}").getAsJsonObject();
-        assertNull(SpotifyNowPlayingParser.parse(obj));
     }
 }

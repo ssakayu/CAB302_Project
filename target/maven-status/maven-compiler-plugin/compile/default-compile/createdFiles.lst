@@ -3,7 +3,6 @@ com\focusdesk\service\SpotifyService.class
 com\focusdesk\util\AppConfig.class
 com\focusdesk\service\OAuthCallbackServer.class
 com\focusdesk\controller\widget\WidgetController.class
-com\focusdesk\app\PomodoroTest.class
 com\focusdesk\service\GoogleCalendarService.class
 com\focusdesk\controller\widget\TodoSlideController.class
 com\focusdesk\dao\OAuthTokenDAO.class
