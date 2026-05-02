@@ -104,57 +104,6 @@ public class PreferenceDAO {
         }
     }
 
-<<<<<<< Updated upstream
-    public PomodoroSettings getPomodoroSettings(int userId) throws Exception {
-        ensureDefaultRow(userId);
-        String sql = """
-            SELECT focus_minutes, short_break_minutes, long_break_minutes,
-                   pomodoro_sessions_before_long_break, pomodoro_sound_notifications
-            FROM preferences
-            WHERE user_id = ?
-        """;
-
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setInt(1, userId);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (!rs.next()) {
-                    return null;
-                }
-
-                return new PomodoroSettings(
-                        rs.getInt("focus_minutes"),
-                        rs.getInt("short_break_minutes"),
-                        rs.getInt("long_break_minutes"),
-                        rs.getInt("pomodoro_sessions_before_long_break"),
-                        rs.getInt("pomodoro_sound_notifications") != 0
-                );
-            }
-        }
-    }
-
-    public void savePomodoroSettings(int userId, PomodoroSettings settings) throws Exception {
-        ensureDefaultRow(userId);
-        String sql = """
-            UPDATE preferences
-            SET focus_minutes = ?,
-                short_break_minutes = ?,
-                long_break_minutes = ?,
-                pomodoro_sessions_before_long_break = ?,
-                pomodoro_sound_notifications = ?
-            WHERE user_id = ?
-        """;
-
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setInt(1, settings.getFocusMinutes());
-            ps.setInt(2, settings.getShortBreakMinutes());
-            ps.setInt(3, settings.getLongBreakMinutes());
-            ps.setInt(4, settings.getSessionsBeforeLongBreak());
-            ps.setInt(5, settings.isSoundNotifications() ? 1 : 0);
-=======
     public void updatePomodoroSettings(int userId, int focusMinutes, int shortBreakMinutes,
                                        int longBreakMinutes, int sessionsBeforeLongBreak,
                                        boolean enableSoundNotifications) throws Exception {
@@ -172,7 +121,6 @@ public class PreferenceDAO {
             ps.setInt(3, longBreakMinutes);
             ps.setInt(4, sessionsBeforeLongBreak);
             ps.setInt(5, enableSoundNotifications ? 1 : 0);
->>>>>>> Stashed changes
             ps.setInt(6, userId);
             ps.executeUpdate();
         }
