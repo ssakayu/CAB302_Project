@@ -2,7 +2,7 @@
 package com.focusdesk.dao;
 
 import com.focusdesk.model.Preference;
-import com.focusdesk.model.PomodoroSettings;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
