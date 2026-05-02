@@ -17,13 +17,10 @@ CREATE TABLE IF NOT EXISTS preferences (
                                            focus_minutes INTEGER DEFAULT 25,
                                            short_break_minutes INTEGER DEFAULT 5,
                                            long_break_minutes INTEGER DEFAULT 15,
-<<<<<<< Updated upstream
                                            pomodoro_sessions_before_long_break INTEGER DEFAULT 4,
                                            pomodoro_sound_notifications INTEGER DEFAULT 1,
-=======
                                            sessions_before_long_break INTEGER DEFAULT 4,
                                            enable_sound_notifications INTEGER DEFAULT 1,
->>>>>>> Stashed changes
                                            widget_x REAL DEFAULT 100,
                                            widget_y REAL DEFAULT 100,
                                            widget_opacity REAL DEFAULT 1.0,
