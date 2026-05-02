@@ -50,7 +50,7 @@ public final class SpotifyNowPlayingParser {
                 progressMs,
                 durationMs,
                 title,
-                artists,
+                artist,
                 album,
                 coverUrl
         );
