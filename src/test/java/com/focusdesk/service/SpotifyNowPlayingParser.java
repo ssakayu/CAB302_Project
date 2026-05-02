@@ -41,8 +41,11 @@ public final class SpotifyNowPlayingParser {
             JsonObject albumObj = item.getAsJsonObject("album");
             if (albumObj.has("name")) album = albumObj.get("name").getAsString();
 
-            JsonArray images = albumObj.getAsJsonArray("images");
-            coverUrl = images.get(0).getAsJsonObject().get("url").getAsString();
+            if (albumObj.has("images") && albumObj.getAsJsonArray("images").size() > 0) {
+                JsonArray images = albumObj.getAsJsonArray("images");
+                // ✅ pick smallest = last image
+                coverUrl = images.get(images.size() - 1).getAsJsonObject().get("url").getAsString();
+            }
         }
 
         return new SpotifyNowPlayingInfo(
