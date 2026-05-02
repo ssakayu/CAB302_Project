@@ -55,7 +55,11 @@ public class MainController {
             return;
 
         switch (tb.getText()) {
+<<<<<<< Updated upstream
             case "Dashboard" -> loadPage("dashboard_page");
+=======
+            case "Dashboard" -> loadPage("dashboard");
+>>>>>>> Stashed changes
             case "Tasks" -> loadPage("tasks_page");
             case "Calendar" -> loadPage("calendar_slide");
             case "Notes" -> loadPage("notes_page");

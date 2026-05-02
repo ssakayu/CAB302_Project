@@ -13,6 +13,7 @@ public class PreferenceDAO {
     public Preference getByUserId(int userId) throws Exception {
         String sql = """
             SELECT user_id, theme, enabled_widgets, focus_minutes, short_break_minutes, long_break_minutes,
+                   sessions_before_long_break, enable_sound_notifications,
                    widget_x, widget_y, widget_opacity
             FROM preferences
             WHERE user_id = ?
@@ -32,6 +33,8 @@ public class PreferenceDAO {
                         rs.getInt("focus_minutes"),
                         rs.getInt("short_break_minutes"),
                         rs.getInt("long_break_minutes"),
+                        rs.getInt("sessions_before_long_break"),
+                        rs.getInt("enable_sound_notifications") != 0,
                         rs.getDouble("widget_x"),
                         rs.getDouble("widget_y"),
                         rs.getDouble("widget_opacity")
@@ -101,6 +104,7 @@ public class PreferenceDAO {
         }
     }
 
+<<<<<<< Updated upstream
     public PomodoroSettings getPomodoroSettings(int userId) throws Exception {
         ensureDefaultRow(userId);
         String sql = """
@@ -150,6 +154,25 @@ public class PreferenceDAO {
             ps.setInt(3, settings.getLongBreakMinutes());
             ps.setInt(4, settings.getSessionsBeforeLongBreak());
             ps.setInt(5, settings.isSoundNotifications() ? 1 : 0);
+=======
+    public void updatePomodoroSettings(int userId, int focusMinutes, int shortBreakMinutes,
+                                       int longBreakMinutes, int sessionsBeforeLongBreak,
+                                       boolean enableSoundNotifications) throws Exception {
+        ensureDefaultRow(userId);
+        String sql = """
+            UPDATE preferences
+            SET focus_minutes = ?, short_break_minutes = ?, long_break_minutes = ?,
+                sessions_before_long_break = ?, enable_sound_notifications = ?
+            WHERE user_id = ?
+        """;
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, focusMinutes);
+            ps.setInt(2, shortBreakMinutes);
+            ps.setInt(3, longBreakMinutes);
+            ps.setInt(4, sessionsBeforeLongBreak);
+            ps.setInt(5, enableSoundNotifications ? 1 : 0);
+>>>>>>> Stashed changes
             ps.setInt(6, userId);
             ps.executeUpdate();
         }
