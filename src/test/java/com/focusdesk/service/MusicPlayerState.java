@@ -14,21 +14,17 @@ public class MusicPlayerState {
     // Apply data from Spotify API (poll every 10–15s)
     public void apply(SpotifyNowPlayingInfo info) {
         if (info == null) {
-            isPlaying = false;
-            progressMs = 0;
-            durationMs = 0;
-            title = "(nothing playing)";
-            artists = "—";
-            album = "—";
-            coverUrl = null;
+            setNothingPlaying();
             return;
         }
+
         isPlaying = info.isPlaying();
-        progressMs = info.progressMs();
-        durationMs = info.durationMs();
-        title = info.trackTitle();
-        artists = info.artists();
-        album = info.album();
+        progressMs = clamp(info.progressMs(), 0, info.durationMs());
+        durationMs = Math.max(0, info.durationMs());
+
+        title = safe(info.trackTitle(), "(unknown)");
+        artists = safe(info.artists(), "—");
+        album = safe(info.album(), "—");
         coverUrl = info.coverUrl();
     }
 
@@ -49,7 +45,7 @@ public class MusicPlayerState {
         return min + ":" + (sec < 10 ? "0" + sec : sec);
     }
 
-    // getters (useful later to bind to UI)
+    // getters
     public boolean isPlaying() { return isPlaying; }
     public long progressMs() { return progressMs; }
     public long durationMs() { return durationMs; }
@@ -57,4 +53,23 @@ public class MusicPlayerState {
     public String artists() { return artists; }
     public String album() { return album; }
     public String coverUrl() { return coverUrl; }
+
+    // ---------------- helpers ----------------
+    private void setNothingPlaying() {
+        isPlaying = false;
+        progressMs = 0;
+        durationMs = 0;
+        title = "(nothing playing)";
+        artists = "—";
+        album = "—";
+        coverUrl = null;
+    }
+
+    private static long clamp(long v, long min, long max) {
+        return Math.max(min, Math.min(v, max));
+    }
+
+    private static String safe(String s, String fallback) {
+        return (s == null || s.isBlank()) ? fallback : s;
+    }
 }
