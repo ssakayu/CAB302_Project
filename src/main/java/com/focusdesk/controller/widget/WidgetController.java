@@ -16,6 +16,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import com.focusdesk.util.AppConfig;
+import javafx.scene.control.TextInputDialog;
+
 
 import java.util.List;
 
@@ -176,6 +179,36 @@ public class WidgetController {
                     pause.play();
                 },
                 err -> System.err.println("Quick note save failed: " + err.getMessage())
+        );
+    }
+    // -------------------------------------------------------------------------
+    // Spotify
+    // -
+    @FXML
+    private void onSetSpotifyClientId() {
+        TextInputDialog d = new TextInputDialog(AppConfig.getSpotifyClientId());
+        d.setTitle("Spotify Setup");
+        d.setHeaderText("Enter Spotify Client ID");
+        d.setContentText("Client ID:");
+        d.showAndWait().ifPresent(id -> {
+            if (!id.isBlank()) AppConfig.setSpotifyClientId(id);
+        });
+    }
+
+
+    @FXML
+    private void onConnectSpotify() {
+        int userId = Session.get().getCurrentUser().getId();
+
+        // Run in background so UI doesn't freeze
+        TaskRunner.run(
+                () -> {
+                    new com.focusdesk.service.SpotifyService().connect(userId);
+                    var me = new com.focusdesk.service.SpotifyService().getMe(userId);
+                    return me.get("display_name").getAsString();
+                },
+                name -> System.out.println("✅ Spotify connected as " + name),
+                err -> System.err.println("Spotify connect failed: " + err.getMessage())
         );
     }
 

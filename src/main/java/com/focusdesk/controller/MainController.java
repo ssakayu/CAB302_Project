@@ -50,6 +50,7 @@ public class MainController {
         switch (tb.getText()) {
             case "Calendar" -> loadPage("calendar_slide");
             case "Notes"  -> loadPage("notes_page");
+            case "Music"    -> loadPage("music_page");
             default       -> contentArea.getChildren().clear();
         }
     }

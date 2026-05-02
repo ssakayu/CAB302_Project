@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.focusdesk.controller.MusicController"
+      spacing="14"
+      style="-fx-padding:24;">
+
+    <Label text="Music" style="-fx-font-size:20; -fx-font-weight:bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label fx:id="spotifyStatusLabel"
+               text="Spotify: not connected"
+               style="-fx-opacity:0.9;"
+               HBox.hgrow="ALWAYS"/>
+
+        <Button fx:id="setClientIdBtn" text="Set Spotify Client ID" onAction="#onSetSpotifyClientId"/>
+        <Button fx:id="connectBtn" text="Connect Spotify" onAction="#onConnectSpotify"/>
+
+        <Button fx:id="disconnectBtn" text="Disconnect" onAction="#onDisconnectSpotify"
+                visible="false" managed="false"/>
+
+        <Button fx:id="refreshBtn" text="Refresh" onAction="#onRefreshNowPlaying" disable="true"/>
+    </HBox>
+
+    <Separator/>
+
+    <HBox spacing="14"
+          style="-fx-padding:16; -fx-border-color:#dddddd; -fx-border-radius:10; -fx-background-radius:10;">
+        <ImageView fx:id="albumCoverView"
+                   fitWidth="120" fitHeight="120"
+                   preserveRatio="true"
+                   smooth="true"/>
+
+        <VBox spacing="6" alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
+            <Label text="Now Playing" style="-fx-font-weight:bold;"/>
+            <Label fx:id="trackTitleLabel" text="—"
+                   style="-fx-font-size:16; -fx-font-weight:bold;" wrapText="true"/>
+            <Label fx:id="artistLabel" text="—" style="-fx-opacity:0.85;" wrapText="true"/>
+            <Label fx:id="albumLabel" text="—" style="-fx-opacity:0.75;" wrapText="true"/>
+            <Label fx:id="playbackLabel" text="—" style="-fx-opacity:0.8;" wrapText="true"/>
+        </VBox>
+    </HBox>
+
+    <!-- Playback controls -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="⏮" onAction="#onPrevTrack"/>
+        <Button text="⏪ 10s" onAction="#onRewind10"/>
+        <Button fx:id="playPauseBtn" text="⏯" onAction="#onPlayPause"/>
+        <Button text="10s ⏩" onAction="#onForward10"/>
+        <Button text="⏭" onAction="#onNextTrack"/>
+    </HBox>
+
+    <Label text="Note: Playback controls require Spotify Premium. If nothing is playing, Now Playing will show empty."
+           style="-fx-font-size:11; -fx-opacity:0.65;"
+           wrapText="true"/>
+</VBox>

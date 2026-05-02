@@ -73,11 +73,36 @@
             </VBox>
 
             <!-- Slide 4: Music -->
-            <VBox spacing="4" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+            <VBox spacing="10"
+                  alignment="CENTER"
+                  maxWidth="Infinity"
+                  maxHeight="Infinity"
+                  style="-fx-padding:16;">
+
+                <!-- Icon + title -->
                 <Label text="♪" styleClass="music-note"/>
-                <Label text="NOW PLAYING" styleClass="timer-label"/>
-                <Label text="Lofi Hip Hop Radio" styleClass="music-title"/>
-                <Label text="ChilledCow" styleClass="timer-label"/>
+                <Label text="SPOTIFY" styleClass="timer-label"/>
+
+                <!-- Status label: WidgetController can update this text -->
+                <Label fx:id="spotifyStatusLabel"
+                       text="Spotify: not connected"
+                       wrapText="true"
+                       style="-fx-opacity:0.9;"/>
+
+                <!-- 1) Saves Client ID into data/app.properties using AppConfig -->
+                <Button text="Set Spotify Client ID"
+                        maxWidth="Infinity"
+                        onAction="#onSetSpotifyClientId"/>
+
+                <!-- 2) Starts OAuth (opens browser) and saves token into DB -->
+                <Button text="Connect Spotify"
+                        maxWidth="Infinity"
+                        onAction="#onConnectSpotify"/>
+
+                <!-- Hint -->
+                <Label text="Tip: keep the app running while the browser redirects."
+                       wrapText="true"
+                       style="-fx-font-size:11; -fx-opacity:0.7;"/>
             </VBox>
 
         </StackPane>

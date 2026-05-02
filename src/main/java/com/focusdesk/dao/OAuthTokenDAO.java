@@ -14,14 +14,16 @@ public class OAuthTokenDAO {
                 FROM oauth_tokens
                 WHERE user_id = ? AND provider = ?
                 """;
+
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setInt(1, userId);
             ps.setString(2, provider);
+
             try (ResultSet rs = ps.executeQuery()) {
-                if (!rs.next()) {
-                    return null;
-                }
+                if (!rs.next()) return null;
+
                 return new OAuthToken(
                         rs.getInt("user_id"),
                         rs.getString("provider"),
@@ -46,8 +48,10 @@ public class OAuthTokenDAO {
                     scope = excluded.scope,
                     expires_at = excluded.expires_at
                 """;
+
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setInt(1, token.userId());
             ps.setString(2, token.provider());
             ps.setString(3, token.accessToken());
@@ -58,4 +62,18 @@ public class OAuthTokenDAO {
             ps.executeUpdate();
         }
     }
+
+    public void delete(int userId, String provider) throws Exception {
+        String sql = "DELETE FROM oauth_tokens WHERE user_id = ? AND provider = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.setString(2, provider);
+            ps.executeUpdate();
+        }
+    }
+
+
 }
+
+
