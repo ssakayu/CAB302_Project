@@ -4,7 +4,7 @@ import com.focusdesk.app.Session;
 import com.focusdesk.dao.TaskDAO;
 import com.focusdesk.model.Task;
 import com.focusdesk.util.TaskRunner;
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -12,6 +12,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+
+import java.util.List;
 
 public class TodoSlideController {
 
@@ -32,7 +34,19 @@ public class TodoSlideController {
         }
 
         FilteredList<Task> incomplete = new FilteredList<>(sessionTasks, t -> !t.isDone());
-        miniTaskList.setItems(incomplete);
+
+        // Cap to MAX_VISIBLE items in a plain list so VirtualFlow never needs
+        // to hide cells — binding visibleProperty() on a ListCell conflicts with
+        // VirtualFlow's own setVisible() calls and crashes the widget launch.
+        ObservableList<Task> capped = FXCollections.observableArrayList();
+        Runnable syncCapped = () -> {
+            int end = Math.min(incomplete.size(), MAX_VISIBLE);
+            capped.setAll(end > 0 ? incomplete.subList(0, end) : List.of());
+        };
+        syncCapped.run();
+        incomplete.addListener((javafx.collections.ListChangeListener<Task>) c -> syncCapped.run());
+
+        miniTaskList.setItems(capped);
         miniTaskList.setCellFactory(lv -> new MiniTaskCell());
 
         emptyHint.visibleProperty().bind(
@@ -61,22 +75,18 @@ public class TodoSlideController {
 
     private class MiniTaskCell extends ListCell<Task> {
         private final CheckBox checkBox = new CheckBox();
-        private final SimpleBooleanProperty hideRow = new SimpleBooleanProperty(false);
 
         MiniTaskCell() {
             checkBox.getStyleClass().add("widget-todo-check");
             checkBox.setOnAction(e -> {
                 if (getItem() != null) onToggleDone(getItem());
             });
-            visibleProperty().bind(hideRow.not());
-            managedProperty().bind(hideRow.not());
             setText(null);
         }
 
         @Override
         protected void updateItem(Task task, boolean empty) {
             super.updateItem(task, empty);
-            hideRow.set(getIndex() >= MAX_VISIBLE);
             if (empty || task == null) {
                 setGraphic(null);
                 return;
